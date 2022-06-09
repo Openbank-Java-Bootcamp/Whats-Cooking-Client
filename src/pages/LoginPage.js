@@ -30,7 +30,7 @@ function LoginPage(props) {
 
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/"); // <== ADD
+        navigate("/");
       })
       .catch((error) => {
         const errorDescription = error.response.data.errors[0].defaultMessage;
@@ -59,7 +59,7 @@ function LoginPage(props) {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
       <p>Don't have an account yet?</p>
-      <Link to={"/api/auth/signup"}> Sign Up</Link>
+      <Link to={"/signup"}> Sign Up</Link>
     </div>
   );
 }

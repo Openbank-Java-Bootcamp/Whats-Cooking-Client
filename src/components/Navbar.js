@@ -7,17 +7,36 @@ function Navbar() {
 
     return (
         <nav className="navbar">
-            <Link to="/api/recipes">
-                <button>Recipes</button>
+            <Link to="/">
+                <button>Home</button>
             </Link>
 
-            <Link to="/api/auth/signup">
-                <button>Sign Up</button>
-            </Link>
+            {isLoggedIn && (
+                <>
+                    <Link to="/recipes">
+                        <button>Recipes</button>
+                    </Link>
+                    <button onClick={logOutUser}>Logout</button>
+                    <div>
+                        <span>{user && user.name}</span>
+                        <Link to={`/cookbooks/${user.id}`}>
+                            <button>My Cookbook</button>
+                        </Link>
+                    </div>
+                </>
+            )}
 
-            <Link to="/api/auth/login">
-                <button>Login</button>
-            </Link>
+            {!isLoggedIn && (
+                <>
+                    <Link to="/signup">
+                        <button>Sign Up</button>
+                    </Link>
+                    <Link to="/login">
+                        <button>Login</button>
+                    </Link>
+                </>
+            )}
+
         </nav>
     );
 }

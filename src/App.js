@@ -7,6 +7,10 @@ import RecipeListPage from './pages/RecipeListPage';
 import IsAnon from './components/IsAnon';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
+import IsPrivate from './components/IsPrivate';
+import RecipeDetailsPage from './pages/RecipeDetailsPage';
+import CookbookDetailsPage from './pages/CookbookDetailsPage';
+import AddRecipePage from './pages/AddRecipePage';
 
 function App() {
   return (
@@ -14,10 +18,13 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/api" element={<HomePage />} />
-        <Route path="/api/auth/signup" element={<IsAnon><SignupPage /></IsAnon>} />
-        <Route path="/api/auth/login" element={<IsAnon><LoginPage /></IsAnon>} />
-        <Route path="/api/recipes" element={<RecipeListPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
+        <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
+        <Route path="/recipes" element={<IsPrivate><RecipeListPage /></IsPrivate>} />
+        <Route path="/recipes/:recipeId" element={<IsPrivate><RecipeDetailsPage /></IsPrivate>} />
+        <Route path="/cookbooks/:cookbookId" element={<IsPrivate><CookbookDetailsPage /></IsPrivate>} />
+        <Route path="/recipes/new" element={<IsPrivate><AddRecipePage /></IsPrivate>} />
       </Routes>
     </div>
   );
