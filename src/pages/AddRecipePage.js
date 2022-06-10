@@ -44,23 +44,25 @@ function AddRecipePage() {
         <div className="AddRecipe">
             <h1>New Recipe:</h1>
             <form onSubmit={handleSubmit}>
-                <label>Title:</label>
+                <label>Title: </label>
                 <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
 
-                <label>Prep Time:</label>
+                <label>Prep Time: </label>
                 <input type="number" name="prepTime" value={prepTime} onChange={(e) => setPrepTime(e.target.value)} />
 
-                <label>Cook Time:</label>
+                <label>Cook Time: </label>
                 <input type="number" name="cookTime" value={cookTime} onChange={(e) => setCookTime(e.target.value)} />
 
-                <label>Servings:</label>
+                <label>Servings: </label>
                 <input type="number" name="servings" value={servings} onChange={(e) => setServings(e.target.value)} />
 
-                <label>Ingredients</label>
-                <input type="text" name="ingredients" value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
+                <label>Ingredients: </label>
+                <textarea type="text" name="ingredients" value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
 
-                <label>Directions</label>
-                <input type="text" name="directions" value={directions} onChange={(e) => setDirections(e.target.value)} />
+                <label>Directions: </label>
+                <textarea type="text" name="directions" value={directions} onChange={(e) => setDirections(e.target.value)} />
+
+                <button type="submit">Submit</button>
             </form>
         </div>
 

@@ -6,6 +6,7 @@ import RecipeCard from "../components/RecipeCard";
 const API_URL = "http://localhost:8081/api";
 
 function CookbookDetailsPage(){
+
     const [cookbook, setCookbook] = useState(null);
     const {cookbookId} = useParams();
 
@@ -32,7 +33,7 @@ function CookbookDetailsPage(){
             {cookbook && (
                 <div>
                     <h1>{cookbook.owner.name}'s Cookbook</h1>
-                    <Link to="/recipes/new">Add a new recipe</Link>
+                    <Link to="/recipes/new">Create a new recipe</Link>
                     {cookbook.recipeList.map((recipe) => (
                         <RecipeCard key={recipe.id} recipe={recipe} />
                     ))}

@@ -16,7 +16,9 @@ function Navbar() {
                     <Link to="/recipes">
                         <button>Recipes</button>
                     </Link>
-                    <button onClick={logOutUser}>Logout</button>
+                    <Link to="/">
+                        <button onClick={logOutUser}>Logout</button>
+                    </Link>
                     <div>
                         <span>{user && user.name}</span>
                         <Link to={`/cookbooks/${user.id}`}>
