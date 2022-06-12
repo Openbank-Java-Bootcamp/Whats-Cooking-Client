@@ -1,21 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import catChefPath from "../assets/catchef.jpg";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import NoteCard from "../components/NoteCard";
+import NoteForm from "../components/NoteForm";
 
 const API_URL = "http://localhost:8081/api";
 
-function RecipeDetailsPage() {
+function RecipeDetailsPage(props) {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-
-  const [recipe, setRecipe] = useState(null);
   const { recipeId } = useParams();
 
-  const getRecipe = () => {
-    const storedToken = localStorage.getItem("authToken");
+  const [recipe, setRecipe] = useState(null);
+  const [note, setNote] = useState(null);
+  const [isEditMode, setIsEditMode] = useState(false);
 
+  const storedToken = localStorage.getItem("authToken");
+
+  const getRecipe = () => {
     axios
       .get(`${API_URL}/recipes/${recipeId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -27,37 +31,62 @@ function RecipeDetailsPage() {
       .catch((error) => console.log(error));
   };
 
-  useEffect(() => {
-    getRecipe();
-  }, []);
-
-  const saveRecipeToCookbook = () => {
-    const requestParam = recipeId;
-    console.log("recipeId: ", recipeId);
-    console.log("user.id: ", user.id);
-    const storedToken = localStorage.getItem("authToken");
-
+  const getNote = () => {
     axios
-      .patch(`${API_URL}/cookbooks/add-recipe/${user.id}`, {recipeID: recipeId}, {
+      .get(`${API_URL}/user-notes/${user.id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        //nothing? refresh page?
+        const userNotes = response.data;
+        console.log(userNotes);
+        const correctNote = userNotes.find(el => el.recipeId == recipeId);
+        console.log("correct note", correctNote);
+        {correctNote && setNote(correctNote)};
+        console.log("note:", note)
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
+  }
+
+  const toggleEditMode = () => {
+    isEditMode ? setIsEditMode(false) : setIsEditMode(true);
   };
 
+  useEffect(() => {
+    getRecipe();
+    getNote();
+  }, []);
+
+  // useEffect(() => {
+  //   getNote();
+  // }, [isEditMode]);
+
   return (
-    <div className="RecipeDetails">
+    <div className="RecipeDetailsPage">
       {recipe && (
         <>
-          <img src={catChefPath} />
+          {props.cookbookId && (
+            <Link to={`/cookbooks/${props.cookbookId}`}>
+              <button>Back to Cookbook</button>
+            </Link>
+          )}
           <div>
-            <div>
-              <h1>{recipe.title}</h1>
-              <p>Added by: {recipe.addedBy.name}</p>
-            </div>
-            <button onClick={saveRecipeToCookbook}>Save to My Cookbook</button>
+            <h1>{recipe.title}</h1>
+            <p>Added by: {recipe.addedBy.name}</p>
+          </div>
+          <div className="photo-and-note">
+            <img src={catChefPath} />
+            {!isEditMode && (
+              <div>
+                {!note && (
+                    <button onClick={toggleEditMode}>Make a Note</button>
+                )}
+                {note && <NoteCard content={note.content}/>}
+              </div>
+            )}
+            {isEditMode && <NoteForm note={note} toggleEditMode={toggleEditMode} userId={user.id} recipeId={recipeId}/>}
+          </div>
+          <div>
+            <button>Save to My Cookbook</button>
           </div>
           <div>
             <h3>Prep Time: {recipe.prepTime} min</h3>

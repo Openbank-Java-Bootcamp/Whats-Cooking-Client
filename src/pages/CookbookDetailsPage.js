@@ -35,7 +35,7 @@ function CookbookDetailsPage(){
                     <h1>{cookbook.owner.name}'s Cookbook</h1>
                     <Link to="/recipes/new">Create a new recipe</Link>
                     {cookbook.recipeList.map((recipe) => (
-                        <RecipeCard key={recipe.id} recipe={recipe} />
+                        <RecipeCard key={recipe.id} recipe={recipe}/>
                     ))}
                 </div>
             )}

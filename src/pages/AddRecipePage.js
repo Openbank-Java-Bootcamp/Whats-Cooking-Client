@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const API_URL = "http://localhost:8081/api";
@@ -14,16 +15,18 @@ function AddRecipePage() {
     const [directions, setDirections] = useState("");
 
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const addedBy = user;
-        const requestBody = { title, prepTime, cookTime, servings, ingredients, directions, addedBy };
+        const userId = user.id;
+        const requestBody = { title, prepTime, cookTime, servings, ingredients, directions, userId };
+        console.log(requestBody);
     
         const storedToken = localStorage.getItem("authToken");
     
         axios
-          .post(`${API_URL}/api/recipes`, requestBody, {
+          .post(`${API_URL}/recipes`, requestBody, {
             headers: { Authorization: `Bearer ${storedToken}` },
           })
           .then((response) => {
@@ -34,7 +37,7 @@ function AddRecipePage() {
             setIngredients("");
             setDirections("");
 
-            //props.refreshProjects();
+            navigate(`/cookbooks/${user.id}`);
           })
           .catch((error) => console.log(error));
       };
