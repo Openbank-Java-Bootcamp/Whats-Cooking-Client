@@ -27,25 +27,19 @@ function RecipeDetailsPage(props) {
       .then((response) => {
         const oneRecipe = response.data;
         setRecipe(oneRecipe);
+        console.log("recipe:", oneRecipe);
       })
       .catch((error) => console.log(error));
   };
 
+
   const getNote = () => {
-    axios
-      .get(`${API_URL}/user-notes/${user.id}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        const userNotes = response.data;
-        console.log(userNotes);
-        const correctNote = userNotes.find(el => el.recipeId == recipeId);
-        console.log("correct note", correctNote);
-        {correctNote && setNote(correctNote)};
-        console.log("note:", note)
-      })
-      .catch((error) => console.log(error));
-  }
+    console.log("recipe notes:", recipe.notes);
+    const userNote = recipe.notes.find(el => el.userId == user.id);
+    console.log("user note:", userNote);
+    setNote(userNote);
+    console.log(note);
+  };
 
   const toggleEditMode = () => {
     isEditMode ? setIsEditMode(false) : setIsEditMode(true);
