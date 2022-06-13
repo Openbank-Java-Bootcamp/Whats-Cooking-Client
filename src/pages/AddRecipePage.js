@@ -29,7 +29,7 @@ function AddRecipePage() {
       ingredients,
       directions,
       userId,
-      image
+      image,
     };
     console.log(requestBody);
 
@@ -40,14 +40,6 @@ function AddRecipePage() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        // setTitle("");
-        // setPrepTime(0);
-        // setCookTime(0);
-        // setServings(0);
-        // setIngredients("");
-        // setDirections("");
-        // setImage("");
-
         navigate(`/cookbooks/${user.id}`);
       })
       .catch((error) => console.log(error));
@@ -77,6 +69,7 @@ function AddRecipePage() {
       <form onSubmit={handleSubmit} onChange={(e) => onFormChange(e)}>
         <label>Title: </label>
         <input
+          required
           type="text"
           name="title"
           value={title}
@@ -85,6 +78,7 @@ function AddRecipePage() {
 
         <label>Prep Time: </label>
         <input
+          required
           type="number"
           name="prepTime"
           value={prepTime}
@@ -109,7 +103,7 @@ function AddRecipePage() {
 
         <label>Ingredients: </label>
         <textarea
-          type="text"
+          required
           name="ingredients"
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
@@ -117,6 +111,7 @@ function AddRecipePage() {
 
         <label>Directions: </label>
         <textarea
+          required
           type="text"
           name="directions"
           value={directions}
@@ -127,7 +122,9 @@ function AddRecipePage() {
         <input type="file" name="image" id="file" accept=".jpeg, .png, .jpg" />
 
         <button type="submit">Save</button>
-        <Link to={`/cookbooks/${user.id}`}><button>Cancel</button></Link>
+        <Link to={`/cookbooks/${user.id}`}>
+          <button>Cancel</button>
+        </Link>
       </form>
     </div>
   );

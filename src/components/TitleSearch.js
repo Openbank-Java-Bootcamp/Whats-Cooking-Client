@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TitleSearch({ filterRecipeHandler, message }) {
+function TitleSearch({ filterRecipeHandler }) {
   const [char, setChar] = useState("");
 
   const handleSearch = (event) => {
@@ -15,7 +15,7 @@ function TitleSearch({ filterRecipeHandler, message }) {
         type="text"
         value={char}
         onChange={handleSearch}
-        placeholder={message}
+        placeholder="Search by title.."
       />
     </div>
   );

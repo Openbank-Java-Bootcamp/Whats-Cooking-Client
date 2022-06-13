@@ -58,6 +58,10 @@ function RecipeDetailsPage(props) {
     getRecipe();
   }, [isEditMode]);
 
+  useEffect(() => {
+    document.title = `${recipe.title}`;
+  }, [recipe]);
+
   return (
     <div className="RecipeDetailsPage">
       {recipe && (

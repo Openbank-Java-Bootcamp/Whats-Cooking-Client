@@ -1,6 +1,7 @@
 import Search from "antd/lib/transfer/search";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import IngredientSearch from "../components/IngredientSearch";
 import RecipeCard from "../components/RecipeCard";
 import TitleSearch from "../components/TitleSearch";
 
@@ -38,20 +39,23 @@ function RecipeListPage() {
     setUpdatedRecipes(filteredRecipes);
   };
 
-  const filteredRecipesByIngredients = (char) => {
+  const filteredRecipesByIngredients = (ingredient) => {
     let filteredRecipes;
-    if (char === "") {
+    console.log("ing:", ingredient);
+    if (ingredient === "") {
       filteredRecipes = recipes;
       setUpdatedRecipes(filteredRecipes);
     } else {
-      const ingredientsArr = char.split(",");
-      ingredientsArr.forEach((ingredient) => {
-        filteredRecipes = updatedRecipes.filter((el) => {
-          el.ingredients.toLowerCase().includes(ingredient.toLowerCase());
-        });
-        setUpdatedRecipes(filteredRecipes);
+      filteredRecipes = updatedRecipes.filter((recipe) => {
+        console.log(recipe.ingredients);
+        return recipe.ingredients.toLowerCase().includes(ingredient.toLowerCase());
       });
     }
+    setUpdatedRecipes(filteredRecipes);
+  };
+
+  const resetRecipes = () => {
+    setUpdatedRecipes(recipes);
   };
 
   //run once
@@ -62,11 +66,9 @@ function RecipeListPage() {
   return (
     <div className="RecipeListPage">
       <h1>Recipes</h1>
-      <TitleSearch filterRecipeHandler={filteredRecipesByTitle} message="Search by title"/>
-      <TitleSearch filterRecipeHandler={filteredRecipesByIngredients} message="Search by ingredients"/>
-      {/* {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
-      ))} */}
+      <TitleSearch filterRecipeHandler={filteredRecipesByTitle} />
+      <IngredientSearch filterRecipeHandler={filteredRecipesByIngredients} />
+      <button onClick={resetRecipes}>Clear Search</button>
       {updatedRecipes.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
