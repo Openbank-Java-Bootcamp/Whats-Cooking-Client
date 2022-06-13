@@ -58,6 +58,10 @@ function NoteForm({ note, toggleEditMode, userId, recipeId }) {
             type="text"
             name="content"
             value={content}
+            maxLength="150"
+            placeholder="max 150 characters"
+            cols="25"
+            rows="6"
             onChange={(e) => setContent(e.target.value)}
           />
           <div>
@@ -76,6 +80,10 @@ function NoteForm({ note, toggleEditMode, userId, recipeId }) {
             type="text"
             name="content"
             value={content}
+            maxLength="150"
+            placeholder="max 150 characters"
+            cols="25"
+            rows="6"
             onChange={(e) => setContent(e.target.value)}
           />
           <div>

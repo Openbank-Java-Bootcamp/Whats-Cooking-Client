@@ -11,6 +11,7 @@ import IsPrivate from './components/IsPrivate';
 import RecipeDetailsPage from './pages/RecipeDetailsPage';
 import CookbookDetailsPage from './pages/CookbookDetailsPage';
 import AddRecipePage from './pages/AddRecipePage';
+import EditRecipePage from './pages/EditRecipePage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/recipes/:recipeId" element={<IsPrivate><RecipeDetailsPage /></IsPrivate>} />
         <Route path="/cookbooks/:cookbookId" element={<IsPrivate><CookbookDetailsPage /></IsPrivate>} />
         <Route path="/recipes/new" element={<IsPrivate><AddRecipePage /></IsPrivate>} />
+        <Route path="/recipes/edit/:recipeId" element={<IsPrivate><EditRecipePage /></IsPrivate>} />
       </Routes>
     </div>
   );

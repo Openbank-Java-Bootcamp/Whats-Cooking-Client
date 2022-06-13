@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const API_URL = "http://localhost:8081/api";
 
-function AddRecipePage() {
+function EditRecipePage(props) {
+  const { recipeId } = useParams();
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [prepTime, setPrepTime] = useState(0);
   const [cookTime, setCookTime] = useState(0);
@@ -15,10 +18,32 @@ function AddRecipePage() {
   const [directions, setDirections] = useState("");
   const [image, setImage] = useState("");
 
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const storedToken = localStorage.getItem("authToken");
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    //get recipe from api
+    axios
+      .get(`${API_URL}/recipes/${recipeId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        //set states for attributes
+        const oneRecipe = response.data;
+        setTitle(oneRecipe.title);
+        setPrepTime(oneRecipe.prepTime);
+        setCookTime(oneRecipe.cookTime);
+        setServings(oneRecipe.servings);
+        setIngredients(oneRecipe.ingredients);
+        setDirections(oneRecipe.directions);
+        setImage(oneRecipe.image);
+      })
+      .catch((error) => console.log(error));
+  }, [recipeId]);
+
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+
+
+  const editRecipe = (e) => {
     e.preventDefault();
     const userId = user.id;
     const requestBody = {
@@ -29,26 +54,16 @@ function AddRecipePage() {
       ingredients,
       directions,
       userId,
-      image
+      image,
     };
     console.log(requestBody);
 
-    const storedToken = localStorage.getItem("authToken");
-
     axios
-      .post(`${API_URL}/recipes`, requestBody, {
+      .put(`${API_URL}/recipes/${recipeId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        // setTitle("");
-        // setPrepTime(0);
-        // setCookTime(0);
-        // setServings(0);
-        // setIngredients("");
-        // setDirections("");
-        // setImage("");
-
-        navigate(`/cookbooks/${user.id}`);
+        navigate(`/recipes/${recipeId}`);
       })
       .catch((error) => console.log(error));
   };
@@ -70,11 +85,11 @@ function AddRecipePage() {
     setImage(btoa(binaryString));
   };
 
-  //form
+
   return (
     <div className="AddRecipe">
-      <h1>New Recipe:</h1>
-      <form onSubmit={handleSubmit} onChange={(e) => onFormChange(e)}>
+      <h1>Edit Recipe:</h1>
+      <form onSubmit={editRecipe} onChange={(e) => onFormChange(e)}>
         <label>Title: </label>
         <input
           type="text"
@@ -127,10 +142,10 @@ function AddRecipePage() {
         <input type="file" name="image" id="file" accept=".jpeg, .png, .jpg" />
 
         <button type="submit">Save</button>
-        <Link to={`/cookbooks/${user.id}`}><button>Cancel</button></Link>
+        <Link to={`/recipes/${recipeId}`}><button>Cancel</button></Link>
       </form>
     </div>
   );
 }
 
-export default AddRecipePage;
+export default EditRecipePage;
