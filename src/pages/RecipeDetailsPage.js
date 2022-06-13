@@ -17,9 +17,9 @@ function RecipeDetailsPage(props) {
   const [note, setNote] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const storedToken = localStorage.getItem("authToken");
 
   const getRecipe = () => {
+    const storedToken = localStorage.getItem("authToken");
     axios
       .get(`${API_URL}/recipes/${recipeId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -27,19 +27,15 @@ function RecipeDetailsPage(props) {
       .then((response) => {
         const oneRecipe = response.data;
         setRecipe(oneRecipe);
-        console.log("recipe:", oneRecipe);
+        //console.log("found recipe:", oneRecipe);
+        const userNote = oneRecipe.notes.find(el => el.userId == user.id);
+        //console.log("userNote:", userNote);
+        {userNote && setNote(userNote)};
       })
       .catch((error) => console.log(error));
+      //console.log("recipe", recipe);
   };
 
-
-  const getNote = () => {
-    console.log("recipe notes:", recipe.notes);
-    const userNote = recipe.notes.find(el => el.userId == user.id);
-    console.log("user note:", userNote);
-    setNote(userNote);
-    console.log(note);
-  };
 
   const toggleEditMode = () => {
     isEditMode ? setIsEditMode(false) : setIsEditMode(true);
@@ -47,8 +43,8 @@ function RecipeDetailsPage(props) {
 
   useEffect(() => {
     getRecipe();
-    getNote();
-  }, []);
+    //getNote();
+  }, [isEditMode]);
 
   // useEffect(() => {
   //   getNote();
@@ -68,13 +64,13 @@ function RecipeDetailsPage(props) {
             <p>Added by: {recipe.addedBy.name}</p>
           </div>
           <div className="photo-and-note">
-            <img src={catChefPath} />
+            <img src={`data:image/png;base64,${recipe.image}`} />
             {!isEditMode && (
               <div>
                 {!note && (
                     <button onClick={toggleEditMode}>Make a Note</button>
                 )}
-                {note && <NoteCard content={note.content}/>}
+                {note && <NoteCard note={note} toggleEditMode={toggleEditMode} setNote={setNote}/>}
               </div>
             )}
             {isEditMode && <NoteForm note={note} toggleEditMode={toggleEditMode} userId={user.id} recipeId={recipeId}/>}

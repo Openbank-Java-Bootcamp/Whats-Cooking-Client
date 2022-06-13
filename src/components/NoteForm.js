@@ -10,7 +10,7 @@ function NoteForm({ note, toggleEditMode, userId, recipeId }) {
       e.preventDefault();
   
       const requestBody = {userId, recipeId, content};
-      console.log(requestBody);
+      //console.log(requestBody);
   
       const storedToken = localStorage.getItem("authToken");
   
@@ -28,17 +28,17 @@ function NoteForm({ note, toggleEditMode, userId, recipeId }) {
   const editNote = (e) => {
     e.preventDefault();
 
-    const requestParam = content;
-    console.log(requestParam);
+    //const requestBody = {content};
+    //console.log(requestBody);
 
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .patch(`${API_URL}/notes/${note.id}`, requestParam, {
+      .patch(`${API_URL}/notes/${note.id}`, {content}, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        //setContent("");
+        toggleEditMode();
       })
       .catch((error) => console.log(error));
   };
