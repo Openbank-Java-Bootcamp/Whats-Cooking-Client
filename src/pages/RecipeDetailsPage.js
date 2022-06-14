@@ -6,10 +6,11 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import NoteCard from "../components/NoteCard";
 import NoteForm from "../components/NoteForm";
+import EditCookbookButton from "../components/EditCookbookButton";
 
 const API_URL = "http://localhost:8081/api";
 
-function RecipeDetailsPage(props) {
+function RecipeDetailsPage() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const { recipeId } = useParams();
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ function RecipeDetailsPage(props) {
       .catch((err) => console.log(err));
   };
 
+  //control editMode for editing Note
   const toggleEditMode = () => {
     isEditMode ? setIsEditMode(false) : setIsEditMode(true);
   };
@@ -58,25 +60,41 @@ function RecipeDetailsPage(props) {
     getRecipe();
   }, [isEditMode]);
 
-  useEffect(() => {
-    document.title = `${recipe.title}`;
-  }, [recipe]);
+
+  //add this recipe to user's cookbook
+  const addRecipeToCookbook = () => {
+    const requestBody = {recipe};
+    const storedToken = localStorage.getItem("authToken");
+    axios
+    .patch(`${API_URL}/cookbooks/${user.id}`, requestBody, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((response) => {
+      
+    })
+    .catch((error) => console.log(error));
+  };
+
+  // useEffect(() => {
+  //   document.title = `${recipe.title}`;
+  // }, [recipe]);
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   return (
     <div className="RecipeDetailsPage">
       {recipe && (
         <>
-          {props.cookbookId && (
-            <Link to={`/cookbooks/${props.cookbookId}`}>
-              <button>Back to Cookbook</button>
-            </Link>
-          )}
+          <button onClick={goBack}>Go Back</button>
           <div>
             <h1>{recipe.title}</h1>
             <p>Added by: {recipe.addedBy.name}</p>
           </div>
           <div>
-            <button>Save to My Cookbook</button>
+            <button onClick={addRecipeToCookbook}>Save to My Cookbook</button>
+            <EditCookbookButton recipe={recipe} />
             <Link to={`/recipes/edit/${recipeId}`}>
               <button>Edit Recipe</button>
             </Link>

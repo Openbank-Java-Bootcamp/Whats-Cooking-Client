@@ -8,7 +8,7 @@ import TitleSearch from "../components/TitleSearch";
 const API_URL = "http://localhost:8081/api";
 
 function RecipeListPage() {
-  //1 useState to for objects
+  //useState for objects
   const [recipes, setRecipes] = useState([]);
   const [updatedRecipes, setUpdatedRecipes] = useState([]);
 

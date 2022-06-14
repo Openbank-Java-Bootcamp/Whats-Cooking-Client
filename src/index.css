@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 code {
@@ -20,4 +22,103 @@ code {
 .NoteCard {
   padding: 10px;;
   border: solid 2px black;
+}
+
+.background-image-1 {
+  background-image: url("assets/cooking-table.jpeg");
+  background-size: cover;
+  position: relative;
+  height: 750px;
+}
+
+.text {
+  background-color: white;
+  opacity: 40%;
+  color: black;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 10vw; /* Responsive font size */
+  font-weight: bold;
+  margin: 0 auto; /* Center the text container */
+  padding: 10px;
+  width: 80%;
+  text-align: center; /* Center text */
+  position: absolute; /* Position text */
+  top: 65%; /* Position text in the middle */
+  left: 50%; /* Position text in the middle */
+  transform: translate(-50%, -50%); /* Position text in the middle */
+  mix-blend-mode: screen; /* This makes the cutout text possible */
+}
+
+.parallelax1 {
+  background-image: url("assets/cooking-table.jpeg");
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-page-box1 {
+  color:rgba(0, 0, 0, 0.8);
+  background-color:antiquewhite;
+  text-align: center;
+  padding: 50px 80px;
+  text-align: justify;
+  font-weight: 700;
+}
+
+.parallelax2 {
+  background-image: url("assets/hands-baking.jpeg");
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.HomePage p {
+  font-size: 3vw;
+  text-align: left;
+  margin: 40px;
+  letter-spacing: 1px;
+}
+
+.home-page-box2 {
+  color:rgba(0, 0, 0, 0.8);
+  background-color:rgba(88, 149, 91, 0.642);
+  text-align: center;
+  padding: 50px 80px;
+  text-align: justify;
+  font-weight: 700;
+}
+
+.parallelax3 {
+  background-image: url("assets/silverware.jpeg");
+  min-height: 400px;
+  background-attachment: fixed;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-page-box3 {
+  color:rgba(0, 0, 0, 0.8);
+  background-color:rgba(171, 137, 159, 0.642);
+  text-align: center;
+  padding: 50px 80px;
+  font-weight: 700;
+  font-size: large;
+}
+
+.sign-up {
+  background-image: url("assets/silverware.jpeg");
+  background-attachment: fixed;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  font-size: 50px;
+  font-weight: bolder;
+  color:antiquewhite;
+  
 }
