@@ -93,7 +93,7 @@ function RecipeDetailsPage() {
             <p>Added by: {recipe.addedBy.name}</p>
           </div>
           <div>
-            <button onClick={addRecipeToCookbook}>Save to My Cookbook</button>
+            {/* <button onClick={addRecipeToCookbook}>Save to My Cookbook</button> */}
             <EditCookbookButton recipe={recipe} />
             <Link to={`/recipes/edit/${recipeId}`}>
               <button>Edit Recipe</button>

@@ -32,6 +32,7 @@ function CookbookDetailsPage(){
         <div className="Cookbook">
             {cookbook && (
                 <div>
+                    <button>Delete my Account</button>
                     <h1>{cookbook.owner.name}'s Cookbook</h1>
                     <Link to="/recipes/new">Create a new recipe</Link>
                     {cookbook.recipeList.map((recipe) => (

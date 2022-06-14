@@ -19,7 +19,6 @@ function EditCookbookButton({ recipe }) {
 
   const getCookbook = () => {
     const storedToken = localStorage.getItem("authToken");
-
     axios
       .get(`${API_URL}/cookbooks/${cookbookId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -27,24 +26,27 @@ function EditCookbookButton({ recipe }) {
       .then((response) => {
         const oneCookbook = response.data;
         setCookbook(oneCookbook);
+        //check if recipe exists in the cookbook and setIsInCookbook if true, this will change the text on the button to the appropriate option
+        {oneCookbook.recipeList.some(el => el.id === recipe.id) && setIsInCookbook(true)};
       })
       .catch((error) => console.log(error));
   };
 
-  const editCookbook = () => {
-    //check if recipe exists in the cookbook recipeList, then add or remove as appropriate
-    const editedRecipeList = cookbook.recipeList.slice();
-    if (!editedRecipeList.includes(recipe)) {
-      editedRecipeList.push(recipe);
-    } else {
-      editedRecipeList = editedRecipeList.filter((el) => el !== recipe);
+  const checkIfRecipeInCookbook = () => {
+    console.log("cookbook", cookbook);
+    {
+      cookbook.recipeList.includes(recipe)
+        ? setIsInCookbook(true)
+        : setIsInCookbook(false);
     }
+  };
 
-    //patch cookbook recipeList in server
+  const editCookbook = () => {
     const storedToken = localStorage.getItem("authToken");
-    const requestBody = { recipeList };
+    const recipeId = recipe.id;
+    //just sending cookbookId and recipeId in the request and the backend will determine if recipe needs to be added or removed
     axios
-      .patch(`${API_URL}/cookbooks/${cookbookId}`, requestBody, {
+      .patch(`${API_URL}/cookbooks/${cookbookId}`, {recipeId}, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -55,7 +57,7 @@ function EditCookbookButton({ recipe }) {
 
   useEffect(() => {
     getCookbook();
-  }, [isInCookbook]);
+  }, []);
 
   return (
     <div className="EditCookbookButton">

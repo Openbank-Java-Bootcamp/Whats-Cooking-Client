@@ -35,7 +35,7 @@ function EditRecipePage(props) {
         setServings(oneRecipe.servings);
         setIngredients(oneRecipe.ingredients);
         setDirections(oneRecipe.directions);
-        setImage(oneRecipe.image);
+        setImage("image");
       })
       .catch((error) => console.log(error));
   }, [recipeId]);

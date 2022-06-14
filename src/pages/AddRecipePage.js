@@ -8,9 +8,9 @@ const API_URL = "http://localhost:8081/api";
 
 function AddRecipePage() {
   const [title, setTitle] = useState("");
-  const [prepTime, setPrepTime] = useState(0);
-  const [cookTime, setCookTime] = useState(0);
-  const [servings, setServings] = useState(0);
+  const [prepTime, setPrepTime] = useState(null);
+  const [cookTime, setCookTime] = useState(null);
+  const [servings, setServings] = useState(null);
   const [ingredients, setIngredients] = useState("");
   const [directions, setDirections] = useState("");
   const [image, setImage] = useState("");
@@ -78,7 +78,6 @@ function AddRecipePage() {
 
         <label>Prep Time: </label>
         <input
-          required
           type="number"
           name="prepTime"
           value={prepTime}
