@@ -1,17 +1,21 @@
 import { NavLink } from "react-router-dom";
-import catChefPath from "../assets/catchef.jpg";
+import placeholder from "../assets/image-placeholder.png";
 
 function RecipeCard(props) {
-    const {recipe} = props;
+  const { recipe } = props;
 
-    return (
-        <div className="RecipeCard">
-            <NavLink to={`/recipes/${recipe.id}`}>
-                <img className="thumbnail" src={`data:image/png;base64,${recipe.image}`} />
-                <h3>{recipe.title}</h3>
-            </NavLink>
-        </div>
-    );
+  return (
+    <NavLink className="RecipeCard" to={`/recipes/${recipe.id}`}>
+      <div className="thumbnail">
+        {recipe.image && <img src={`data:image/png;base64,${recipe.image}`} />}
+        {!recipe.image && <img src={placeholder} />}
+      </div>
+      <div className="title">
+        <></>
+        <h3>{recipe.title}</h3>
+      </div>
+    </NavLink>
+  );
 }
 
 export default RecipeCard;

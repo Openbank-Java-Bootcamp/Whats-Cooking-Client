@@ -6,7 +6,6 @@ import Search from "../components/Search";
 const API_URL = "http://localhost:8081/api";
 
 function RecipeListPage() {
-
   const [recipes, setRecipes] = useState([]);
   const [updatedRecipes, setUpdatedRecipes] = useState([]);
 
@@ -28,12 +27,16 @@ function RecipeListPage() {
     getAllRecipes();
   }, []);
 
-
   return (
     <div className="RecipeListPage">
-      <h1>Recipes</h1>
-      <div className="search-box">
-        <Search getAllRecipes={getAllRecipes} setUpdatedRecipes={setUpdatedRecipes} />
+      <div className="top-recipe-list-page">
+        <h1>Recipes</h1>
+        <div className="search-box">
+          <Search
+            getAllRecipes={getAllRecipes}
+            setUpdatedRecipes={setUpdatedRecipes}
+          />
+        </div>
       </div>
       <div className="recipe-card-box">
         {updatedRecipes.map((recipe) => (

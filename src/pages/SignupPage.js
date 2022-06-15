@@ -32,6 +32,7 @@ function SignupPage(props) {
       .catch((error) => {
         const errorDescription = error.response.data.errors[0].defaultMessage;
         setErrorMessage(errorDescription);
+        console.log(error.response.data.error);
       });
   };
 

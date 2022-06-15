@@ -26,11 +26,12 @@ function LoginPage(props) {
       .then((response) => {
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/");
+        navigate("/recipes");
       })
       .catch((error) => {
         const errorDescription = error.response.data.errors[0].defaultMessage;
         setErrorMessage(errorDescription);
+        console.log(errorMessage);
       });
   };
 

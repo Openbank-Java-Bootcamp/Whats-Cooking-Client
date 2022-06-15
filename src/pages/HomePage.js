@@ -23,8 +23,8 @@ function HomePage() {
       <div className="parallelax2"></div>
       <div className="home-page-box">
         <p>
-        Now you can share all your favorite recipes with loved ones near and
-          far. Don’t forget to add the secret ingredient! (Heart)
+        Now you can share all of your favorite recipes with loved ones near and
+          far. Don’t forget to include the secret ingredient! (Heart)
         </p>
       </div>
       <div className="parallelax2"></div>

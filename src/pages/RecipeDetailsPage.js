@@ -28,7 +28,6 @@ function RecipeDetailsPage() {
       })
       .then((response) => {
         const oneRecipe = response.data;
-        console.log(response.data);
         setRecipe(oneRecipe);
         const userNote = oneRecipe.notes.find((el) => el.userId == user.id);
         {
@@ -36,7 +35,6 @@ function RecipeDetailsPage() {
         }
       })
       .catch((error) => console.log(error));
-
   };
 
   const deleteRecipe = () => {
@@ -56,9 +54,10 @@ function RecipeDetailsPage() {
     isEditMode ? setIsEditMode(false) : setIsEditMode(true);
   };
 
-  useEffect(() => {
-    getRecipe();
-  }, [isEditMode]);
+  const isOwner = () => {
+    return user.id == recipe.addedBy.id;
+  };
+
 
   //add this recipe to user's cookbook
   const addRecipeToCookbook = () => {
@@ -71,6 +70,10 @@ function RecipeDetailsPage() {
       .then((response) => {})
       .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    getRecipe();
+  }, [isEditMode, recipeId]);
 
   const goBack = () => {
     navigate(-1);
@@ -85,16 +88,22 @@ function RecipeDetailsPage() {
           </button>
           <div>
             <h1>{recipe.title}</h1>
-            <p>Added by: {recipe.addedBy.name}</p>
+            <Link to={`/cookbooks/${recipe.addedBy.id}`}>
+              <p>Added by: {recipe.addedBy.name}</p>
+            </Link>
           </div>
           <div className="recipe-buttons">
             <EditCookbookButton recipe={recipe} />
-            <Link to={`/recipes/edit/${recipeId}`}>
-              <button className="outline-button">Edit Recipe</button>
-            </Link>
-            <button className="outline-button" onClick={deleteRecipe}>
-              Delete Recipe
-            </button>
+            {isOwner() && (
+              <div>
+                <Link to={`/recipes/edit/${recipeId}`}>
+                  <button className="outline-button">Edit Recipe</button>
+                </Link>
+                <button className="outline-button" onClick={deleteRecipe}>
+                  Delete Recipe
+                </button>
+              </div>
+            )}
           </div>
           <div className="photo-and-note">
             <img
@@ -134,7 +143,9 @@ function RecipeDetailsPage() {
           <div className="ingredients-directions">
             <ul className="ingredients">
               {/* <p>{recipe.ingredients}</p> */}
-              {recipe.ingredients.split(",").map((el) => <li className="ingredient-item">{el}</li>)}
+              {recipe.ingredients.split(",").map((el) => (
+                <li className="ingredient-item">{el}</li>
+              ))}
             </ul>
             <div className="directions">
               <p>{recipe.directions}</p>

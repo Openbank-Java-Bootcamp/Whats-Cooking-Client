@@ -43,8 +43,8 @@ function Search({ getAllRecipes, setUpdatedRecipes }) {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search .."
       />
-      <button onClick={handleSearch}>Search</button>
-      <button onClick={clearSearch}>Clear Search</button>
+      <button className="small-fade-button" onClick={handleSearch}>Search</button>
+      <button className="small-fade-button" onClick={clearSearch}>Clear Search</button>
     </div>
   );
 }

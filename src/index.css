@@ -55,7 +55,8 @@ code {
 /* HomePage */
 
 .background-image-1 {
-  background-image: url("assets/pasta-cooking-xxl.jpg");
+  /* background-image: url("assets/pasta-cooking-xxl.jpg"); */
+  background-image: url("assets/steaming-pot.gif");
   background-size: cover;
   position: relative;
   height: 750px;
@@ -63,7 +64,7 @@ code {
 
 .text {
   background-color: white;
-  opacity: 40%;
+  opacity: 50%;
   color: black;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 10vw; /* Responsive font size */
@@ -73,17 +74,27 @@ code {
   width: 80%;
   text-align: center; /* Center text */
   position: absolute; /* Position text */
-  top: 65%; /* Position text in the middle */
+  top: 50%; /* Position text in the middle */
   left: 50%; /* Position text in the middle */
   transform: translate(-50%, -50%); /* Position text in the middle */
   mix-blend-mode: screen; /* This makes the cutout text possible */
 }
 
-.parallelax1 {
+/* .parallelax1 {
   background-image: url("assets/pasta-cooking-xxl.jpg");
   min-height: 500px;
   background-attachment: fixed;
   background-position: top;
+  background-repeat: no-repeat;
+  background-size:cover;
+} */
+
+.parallelax1 {
+  background-color: blanchedalmond;
+  background-image: url("assets/steaming-pot.gif");
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -99,7 +110,7 @@ code {
 
 .parallelax2 {
   background-image: url("assets/hands-baking.jpeg");
-  min-height: 500px;
+  min-height: 700px;
   background-attachment: fixed;
   background-position: top;
   background-repeat: no-repeat;
@@ -188,15 +199,27 @@ label {
 }
 
 /* RecipeListPage */
-.RecipeListPage {
-  padding: 100px;
+
+.RecipeListPage{
+  width:100%;
+  background-color: rgba(53, 59, 56, 0.967);
+}
+.top-recipe-list-page{
+  /* padding: 100px;
   background-color: rgba(67, 106, 99, 0.655);
   background-image: url("assets/slate2.jpeg");
+  background-size: cover; */
+  background-image: url("assets/slate-banner.jpeg");
   background-size: cover;
+  background-repeat: no-repeat;
+  margin:0;
+  padding-top: 9%;
+  padding-bottom: 6%;
+  /* opacity: 97%; */
 }
 
-h1 {
-  font-size: 50px;
+.RecipeListPage h1 {
+  font-size: 80px;
   color:antiquewhite;
 }
 
@@ -206,41 +229,40 @@ h1 {
   margin: auto;
 }
 
-.block-button {
-  display: block;
-  width: 100%;
-  text-align: center;
-
-  border: 2px solid rgb(67, 106, 99);
-  background-color: rgba(67, 106, 99, 0.70);
-  color: antiquewhite;
-  padding: 14px 28px;
-  font-size: 16px;
-  cursor: pointer;
-
-  border-radius: 4px;
-}
-
-.block-button:hover {
+.Search .small-fade-button {
   background-color: rgb(67, 106, 99);
-  color: antiquewhite
 }
 
 .recipe-card-box {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content:flex-start;
+  margin:50px;
+  float: center;
 }
 
 /* RecipeCard */
 .RecipeCard {
-  border: solid 1px antiquewhite;
+  /* border: solid 1px antiquewhite;
   margin: 20px;
   /* padding: 10px; */
-  height: 300px;
+  /* height: 300px;
   width: 300px;
   opacity: 75%;
-  background-color: blanchedalmond;
+  background-color: blanchedalmond;  */
+
+  background: #fff;
+  width: 250px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  opacity: 75%;
+}
+
+.RecipeCard a {
+  padding: 0;
+  height: 100%;
 }
 
 .RecipeCard:hover {
@@ -248,17 +270,38 @@ h1 {
 }
 
 .thumbnail {
-  /* max-width: 250px; */
-  width: 100%;
-  max-height: 250px;
+  background: #fff;
+  width: 230px;
+  height: 230px;
+  overflow: hidden;
+  position: relative;
+  top:10%;
+  left:4%;
+  overflow: hidden;
   margin: 0;
 }
 
-h3 {
+.thumbnail image{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+.RecipeCard .title {
   color:rgba(39, 45, 48, 0.876);
   font-size: 25px;
-  padding-bottom: 10px;
-  margin:5px;
+  margin:0;
+  justify-content: space-between;
+}
+.title h3 {
+  position: relative;
+  top:110%;
+  margin: 10px;
 }
 
 /* RecipeDetailsPage  */
@@ -370,4 +413,13 @@ h3 {
 
 .directions {
   width: 60%;
+}
+
+
+/* Cookbook */
+.Cookbook {
+  background-image: url("assets/slate-banner.jpeg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-top: 100px;
 }
