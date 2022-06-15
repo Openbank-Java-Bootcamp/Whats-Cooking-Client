@@ -3,45 +3,50 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8081/api";
 
-function TitleSearch({ setUpdatedRecipes }) {
-  // const [char, setChar] = useState("");
-
-  // const handleSearch = (event) => {
-  //   setChar(event.target.value);
-  //   filterRecipeHandler(event.target.value);
-  // };
-
+function Search({ getAllRecipes, setUpdatedRecipes }) {
+  
   const [query, setQuery] = useState("");
 
   //search for recipes whose title or ingredients include the query value
-  const getFilterRecipes = (e) => {
+  const getFilteredRecipes = (e) => {
     const storedToken = localStorage.getItem("authToken");
 
-    axios
-      .get(`${API_URL}/recipes?search=${query}`, {
+    if (query === "") {
+      getAllRecipes();
+    } else {
+      axios
+      .get(`${API_URL}/recipes/search?query=${query}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         setUpdatedRecipes(response.data);
+        console.log("response ", response.data)
       })
       .catch((error) => console.log(error));
+    }
+  }
+
+  const clearSearch = () => {
+    setQuery("");
+    getAllRecipes();
   }
 
   const handleSearch = (event) => {
-    setQuery(event.target.value);
-    getFilterRecipes(event.target.value);
+    getFilteredRecipes();
   };
 
   return (
-    <div className="TitleSearch">
+    <div className="Search">
       <input
         type="text"
         value={query}
-        onChange={handleSearch}
+        onChange={(e) => setQuery(e.target.value)}
         placeholder="Search .."
       />
+      <button onClick={handleSearch}>Search</button>
+      <button onClick={clearSearch}>Clear Search</button>
     </div>
   );
 }
 
-export default TitleSearch;
+export default Search;

@@ -1,18 +1,15 @@
-import Search from "antd/lib/transfer/search";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import IngredientSearch from "../components/IngredientSearch";
 import RecipeCard from "../components/RecipeCard";
-import TitleSearch from "../components/TitleSearch";
+import Search from "../components/Search";
 
 const API_URL = "http://localhost:8081/api";
 
 function RecipeListPage() {
-  //useState for objects
+
   const [recipes, setRecipes] = useState([]);
   const [updatedRecipes, setUpdatedRecipes] = useState([]);
 
-  //get recipes from the api
   const getAllRecipes = () => {
     const storedToken = localStorage.getItem("authToken");
 
@@ -27,53 +24,16 @@ function RecipeListPage() {
       .catch((error) => console.log(error));
   };
 
-  const filteredRecipesByTitle = (char) => {
-    let filteredRecipes;
-    if (char === "") {
-      filteredRecipes = recipes;
-    } else {
-      filteredRecipes = updatedRecipes.filter((el) => {
-        return el.title.toLowerCase().includes(char.toLowerCase());
-      });
-    }
-    setUpdatedRecipes(filteredRecipes);
-  };
-
-  const filteredRecipesByIngredients = (ingredient) => {
-    let filteredRecipes;
-    console.log("ing:", ingredient);
-    if (ingredient === "") {
-      filteredRecipes = recipes;
-      setUpdatedRecipes(filteredRecipes);
-    } else {
-      filteredRecipes = updatedRecipes.filter((recipe) => {
-        console.log(recipe.ingredients);
-        return recipe.ingredients
-          .toLowerCase()
-          .includes(ingredient.toLowerCase());
-      });
-    }
-    setUpdatedRecipes(filteredRecipes);
-  };
-
-  const resetRecipes = () => {
-    setUpdatedRecipes(recipes);
-  };
-
-  //run once
   useEffect(() => {
     getAllRecipes();
   }, []);
+
 
   return (
     <div className="RecipeListPage">
       <h1>Recipes</h1>
       <div className="search-box">
-        <TitleSearch setUpdatedRecipes={setUpdatedRecipes} />
-        {/* <IngredientSearch filterRecipeHandler={filteredRecipesByIngredients} /> */}
-        <button className="block-button" onClick={resetRecipes}>
-          Clear Search
-        </button>
+        <Search getAllRecipes={getAllRecipes} setUpdatedRecipes={setUpdatedRecipes} />
       </div>
       <div className="recipe-card-box">
         {updatedRecipes.map((recipe) => (
