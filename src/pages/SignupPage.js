@@ -37,43 +37,48 @@ function SignupPage(props) {
 
   return (
     <div className="SignupPage">
-      <h1>Sign Up</h1>
+      <form className="signup-form" onSubmit={handleSignupSubmit}>
+        <div>
+          <label>Email:</label>
+          <input
+            required
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleEmail}
+          />
 
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input
-          required
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleEmail}
-        />
+          <label>Password:</label>
+          <input
+            required
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+          />
 
-        <label>Password:</label>
-        <input
-          required
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+          <label>Name:</label>
+          <input
+            required
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleName}
+          />
 
-        <label>Name:</label>
-        <input
-          required
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleName}
-        />
+          <Link to={"/"}>
+            <button className="fade-button">Cancel</button>
+          </Link>
+          <button className="fade-button" type="submit">
+            Sign Up
+          </button>
 
-        <button type="submit">Sign Up</button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+          <p>Already have account?</p>
+          <Link class="navbar-login-link" to={"/login"}> Login</Link>
+        </div>
       </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
     </div>
   );
 }

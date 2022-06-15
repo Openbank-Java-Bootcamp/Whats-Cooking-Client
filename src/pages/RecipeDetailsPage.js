@@ -18,6 +18,7 @@ function RecipeDetailsPage() {
   const [recipe, setRecipe] = useState(null);
   const [note, setNote] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [ingredientArr, setIngredientArr] = useState([]);
 
   const getRecipe = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -27,16 +28,15 @@ function RecipeDetailsPage() {
       })
       .then((response) => {
         const oneRecipe = response.data;
+        console.log(response.data);
         setRecipe(oneRecipe);
-        //console.log("found recipe:", oneRecipe);
         const userNote = oneRecipe.notes.find((el) => el.userId == user.id);
-        //console.log("userNote:", userNote);
         {
           userNote && setNote(userNote);
         }
       })
       .catch((error) => console.log(error));
-    //console.log("recipe", recipe);
+
   };
 
   const deleteRecipe = () => {
@@ -60,24 +60,17 @@ function RecipeDetailsPage() {
     getRecipe();
   }, [isEditMode]);
 
-
   //add this recipe to user's cookbook
   const addRecipeToCookbook = () => {
-    const requestBody = {recipe};
+    const requestBody = { recipe };
     const storedToken = localStorage.getItem("authToken");
     axios
-    .patch(`${API_URL}/cookbooks/${user.id}`, requestBody, {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    })
-    .then((response) => {
-      
-    })
-    .catch((error) => console.log(error));
+      .patch(`${API_URL}/cookbooks/${user.id}`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {})
+      .catch((error) => console.log(error));
   };
-
-  // useEffect(() => {
-  //   document.title = `${recipe.title}`;
-  // }, [recipe]);
 
   const goBack = () => {
     navigate(-1);
@@ -87,24 +80,34 @@ function RecipeDetailsPage() {
     <div className="RecipeDetailsPage">
       {recipe && (
         <>
-          <button onClick={goBack}>Go Back</button>
+          <button className="fade-button go-back" onClick={goBack}>
+            Go Back
+          </button>
           <div>
             <h1>{recipe.title}</h1>
             <p>Added by: {recipe.addedBy.name}</p>
           </div>
-          <div>
-            {/* <button onClick={addRecipeToCookbook}>Save to My Cookbook</button> */}
+          <div className="recipe-buttons">
             <EditCookbookButton recipe={recipe} />
             <Link to={`/recipes/edit/${recipeId}`}>
-              <button>Edit Recipe</button>
+              <button className="outline-button">Edit Recipe</button>
             </Link>
-            <button onClick={deleteRecipe}>Delete Recipe</button>
+            <button className="outline-button" onClick={deleteRecipe}>
+              Delete Recipe
+            </button>
           </div>
           <div className="photo-and-note">
-            <img src={`data:image/png;base64,${recipe.image}`} />
+            <img
+              className="recipe-image"
+              src={`data:image/png;base64,${recipe.image}`}
+            />
             {!isEditMode && (
               <div>
-                {!note && <button onClick={toggleEditMode}>Make a Note</button>}
+                {!note && (
+                  <button className="fade-button" onClick={toggleEditMode}>
+                    Make a Note
+                  </button>
+                )}
                 {note && (
                   <NoteCard
                     note={note}
@@ -123,17 +126,23 @@ function RecipeDetailsPage() {
               />
             )}
           </div>
-          <div>
+          <div className="recipe-times">
             <h3>Prep Time: {recipe.prepTime} min</h3>
             <h3>Cook Time: {recipe.cookTime} min</h3>
             <h3>Servings: {recipe.servings}</h3>
           </div>
-          <hr />
-          <p>{recipe.ingredients}</p>
-          <hr />
-          <p>{recipe.directions}</p>
+          <div className="ingredients-directions">
+            <ul className="ingredients">
+              {/* <p>{recipe.ingredients}</p> */}
+              {recipe.ingredients.split(",").map((el) => <li className="ingredient-item">{el}</li>)}
+            </ul>
+            <div className="directions">
+              <p>{recipe.directions}</p>
+            </div>
+          </div>
         </>
       )}
+      {!recipe && <h1>No recipe</h1>}
     </div>
   );
 }

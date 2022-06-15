@@ -86,9 +86,9 @@ function NoteForm({ note, toggleEditMode, userId, recipeId }) {
             rows="6"
             onChange={(e) => setContent(e.target.value)}
           />
-          <div>
-            <button type="submit">Save</button>
-            <button onClick={toggleEditMode}>Cancel</button>
+          <div className="note-buttons">
+            <button className="small-fade-button" type="submit">Save</button>
+            <button className="small-fade-button" onClick={toggleEditMode}>Cancel</button>
           </div>
         </form>
       </div>

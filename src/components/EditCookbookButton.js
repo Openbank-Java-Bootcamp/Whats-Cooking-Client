@@ -61,7 +61,7 @@ function EditCookbookButton({ recipe }) {
 
   return (
     <div className="EditCookbookButton">
-      <button onClick={editCookbook}>
+      <button className="outline-button" onClick={editCookbook}>
         {!isInCookbook ? "Add to My Cookbook" : "Remove from My Cookbook"}
       </button>
     </div>

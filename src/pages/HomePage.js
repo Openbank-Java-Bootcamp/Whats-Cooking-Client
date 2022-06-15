@@ -13,24 +13,18 @@ function HomePage() {
       </div>
       <div className="parallelax1"></div>
 
-      <div className="home-page-box1">
+      <div className="home-page-box">
         <p>
           In the past, recipes were passed down through families on handwritten
           cards or gathered in cookbooks with notes jotted in the margins.
         </p>
-        <p>
-          Now you can share all your favorite recipes with loved ones near and
-          far. Don’t forget to add the secret ingredient! (Heart)
-        </p>
       </div>
 
       <div className="parallelax2"></div>
-      <div className="home-page-box2">
+      <div className="home-page-box">
         <p>
-          Do you know that in Europe approximately 32% of all food purchased is
-          not eaten? Avoid contributing to food waste by using the Search By
-          Ingredients feature to find recipes using ingredients you already have
-          in your kitchen! (green leaf icon/recycling icon)
+        Now you can share all your favorite recipes with loved ones near and
+          far. Don’t forget to add the secret ingredient! (Heart)
         </p>
       </div>
       <div className="parallelax2"></div>

@@ -14,18 +14,48 @@ code {
     monospace;
 }
 
-.photo-and-note {
+/* Navbar */
+.Navbar {
+  /* background-color: rgb(34, 31, 26); */
+  /* background-image: url("assets/pasta-cooking-xxl.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat; */
+  position: fixed;
+  opacity: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
+  width: 100%;
 }
 
-.NoteCard {
-  padding: 10px;;
-  border: solid 2px black;
+.fade-button {
+  background-color: rgb(67, 106, 99);
+  border: none;
+  border-radius: 4px;
+  color: antiquewhite;
+  padding: 15px 15px;
+  text-align: center;
+  font-size: 20px;
+  margin: 4px 2px;
+  opacity: 0.75;
+  transition: 0.3s;
 }
+
+.fade-button:hover {opacity: 1}
+
+.user-nav {
+  display: flex;
+  justify-content: right;
+}
+
+/* HomePage */
 
 .background-image-1 {
-  background-image: url("assets/cooking-table.jpeg");
+  background-image: url("assets/pasta-cooking-xxl.jpg");
   background-size: cover;
   position: relative;
   height: 750px;
@@ -50,7 +80,7 @@ code {
 }
 
 .parallelax1 {
-  background-image: url("assets/cooking-table.jpeg");
+  background-image: url("assets/pasta-cooking-xxl.jpg");
   min-height: 500px;
   background-attachment: fixed;
   background-position: top;
@@ -58,7 +88,7 @@ code {
   background-size: cover;
 }
 
-.home-page-box1 {
+.home-page-box {
   color:rgba(0, 0, 0, 0.8);
   background-color:antiquewhite;
   text-align: center;
@@ -83,20 +113,11 @@ code {
   letter-spacing: 1px;
 }
 
-.home-page-box2 {
-  color:rgba(0, 0, 0, 0.8);
-  background-color:rgba(88, 149, 91, 0.642);
-  text-align: center;
-  padding: 50px 80px;
-  text-align: justify;
-  font-weight: 700;
-}
-
 .parallelax3 {
   background-image: url("assets/silverware.jpeg");
   min-height: 400px;
   background-attachment: fixed;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -113,7 +134,7 @@ code {
 .sign-up {
   background-image: url("assets/silverware.jpeg");
   background-attachment: fixed;
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -121,4 +142,232 @@ code {
   font-weight: bolder;
   color:antiquewhite;
   
+}
+
+/* SignupPage and LoginPage */
+.SignupPage, .LoginPage {
+  background-image: url("assets/pasta-cooking-xxl.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  height: 100px;
+  padding: 480px 500px;
+  justify-content: center;
+}
+
+.signup-form {
+  opacity: 70%;
+  color:antiquewhite;
+  width: 20%;
+  justify-content: center;
+  position: fixed;
+  /* border: solid 1px antiquewhite;
+  border-radius: 20%;
+  padding: 40px ; */
+}
+
+input[type=email], input[type=password], input[type=text] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: antiquewhite;
+}
+
+label {
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.navbar-login-link, .signup-form p {
+  color:antiquewhite;
+  font-size: 20px;
+  margin: 15px 0 8px;
+}
+
+/* RecipeListPage */
+.RecipeListPage {
+  padding: 100px;
+  background-color: rgba(67, 106, 99, 0.655);
+  background-image: url("assets/slate2.jpeg");
+  background-size: cover;
+}
+
+h1 {
+  font-size: 50px;
+  color:antiquewhite;
+}
+
+.search-box {
+  width: 50%;
+  float: center;
+  margin: auto;
+}
+
+.block-button {
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  border: 2px solid rgb(67, 106, 99);
+  background-color: rgba(67, 106, 99, 0.70);
+  color: antiquewhite;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+
+  border-radius: 4px;
+}
+
+.block-button:hover {
+  background-color: rgb(67, 106, 99);
+  color: antiquewhite
+}
+
+.recipe-card-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* RecipeCard */
+.RecipeCard {
+  border: solid 1px antiquewhite;
+  margin: 20px;
+  /* padding: 10px; */
+  height: 300px;
+  width: 300px;
+  opacity: 75%;
+  background-color: blanchedalmond;
+}
+
+.RecipeCard:hover {
+  opacity: 1;
+}
+
+.thumbnail {
+  /* max-width: 250px; */
+  width: 100%;
+  max-height: 250px;
+  margin: 0;
+}
+
+h3 {
+  color:rgba(39, 45, 48, 0.876);
+  font-size: 25px;
+  padding-bottom: 10px;
+  margin:5px;
+}
+
+/* RecipeDetailsPage  */
+.RecipeDetailsPage {
+  padding-top: 100px;
+  background-color: blanchedalmond;
+  color:rgba(39, 45, 48, 0.876)
+}
+
+.RecipeDetailsPage h1 {
+  color:rgba(39, 45, 48, 0.876);
+  
+}
+
+.go-back {
+  float: left;
+}
+
+.RecipeDetailsPage p {
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.recipe-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.outline-button {
+  display: block;
+  text-align: center;
+
+  border: 2px solid rgb(67, 106, 99);
+  background-color: rgba(67, 106, 99, 0.70);
+  color: rgba(39, 45, 48, 0.876);
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+
+  border-radius: 4px;
+}
+
+.outline-button:hover {
+  background-color: rgb(67, 106, 99);
+  color: antiquewhite
+}
+
+.recipe-image {
+  max-width: 600px;
+  height: auto;
+  margin: 20px;
+}
+
+.photo-and-note {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.NoteCard, .EditNote {
+  height: 250px;
+  width: 250px;
+  padding: 10px;
+  margin: 20px;
+  text-align: left;
+  font-weight: bold;
+  background-color: rgb(237, 216, 111);
+  box-shadow: 10px 10px 5px rgba(120, 123, 124, 0.529);
+}
+
+.note-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.small-fade-button {
+  background-color: rgba(120, 123, 124, 0.918);
+  border: none;
+  border-radius: 4px;
+  color: antiquewhite;
+  padding: 5px 5px;
+  text-align: center;
+  font-size: 15px;
+  margin: 4px 2px;
+  opacity: 0.75;
+  transition: 0.3s;
+}
+
+.small-fade-button:hover {opacity: 1}
+
+.recipe-times {
+  display: flex;
+  justify-content: space-around;
+}
+
+.ingredients-directions {
+  display: flex;
+  justify-content: space-around ;
+  margin-top: 40px;
+}
+
+.ingredients {
+  width: 40%;
+  margin-left: 50px;
+  padding-left: 5px;
+  justify-content: left;
+}
+
+.directions {
+  width: 60%;
 }

@@ -7,7 +7,7 @@ function RecipeCard(props) {
     return (
         <div className="RecipeCard">
             <NavLink to={`/recipes/${recipe.id}`}>
-                <img src={`data:image/png;base64,${recipe.image}`} />
+                <img className="thumbnail" src={`data:image/png;base64,${recipe.image}`} />
                 <h3>{recipe.title}</h3>
             </NavLink>
         </div>

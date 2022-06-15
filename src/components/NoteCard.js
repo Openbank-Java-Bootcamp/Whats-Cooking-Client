@@ -27,9 +27,9 @@ function NoteCard({note, toggleEditMode, setNote}) {
     <div className="NoteCard">
       <h2>My Notes:</h2>
       <p>{note.content}</p>
-      <div>
-        <button onClick={toggleEditMode}>Edit</button>
-        <button onClick={deleteNote}>Delete</button>
+      <div className="note-buttons">
+        <button className="small-fade-button" onClick={toggleEditMode}>Edit</button>
+        <button className="small-fade-button" onClick={deleteNote}>Delete</button>
       </div>
     </div>
   );

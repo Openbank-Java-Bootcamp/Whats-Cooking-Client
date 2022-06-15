@@ -48,7 +48,9 @@ function RecipeListPage() {
     } else {
       filteredRecipes = updatedRecipes.filter((recipe) => {
         console.log(recipe.ingredients);
-        return recipe.ingredients.toLowerCase().includes(ingredient.toLowerCase());
+        return recipe.ingredients
+          .toLowerCase()
+          .includes(ingredient.toLowerCase());
       });
     }
     setUpdatedRecipes(filteredRecipes);
@@ -66,12 +68,18 @@ function RecipeListPage() {
   return (
     <div className="RecipeListPage">
       <h1>Recipes</h1>
-      <TitleSearch filterRecipeHandler={filteredRecipesByTitle} />
-      <IngredientSearch filterRecipeHandler={filteredRecipesByIngredients} />
-      <button onClick={resetRecipes}>Clear Search</button>
-      {updatedRecipes.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
-      ))}
+      <div className="search-box">
+        <TitleSearch setUpdatedRecipes={setUpdatedRecipes} />
+        {/* <IngredientSearch filterRecipeHandler={filteredRecipesByIngredients} /> */}
+        <button className="block-button" onClick={resetRecipes}>
+          Clear Search
+        </button>
+      </div>
+      <div className="recipe-card-box">
+        {updatedRecipes.map((recipe) => (
+          <RecipeCard key={recipe.id} recipe={recipe} />
+        ))}
+      </div>
     </div>
   );
 }
