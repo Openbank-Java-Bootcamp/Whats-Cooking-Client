@@ -42,7 +42,6 @@ function EditRecipePage(props) {
 
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
-
   const editRecipe = (e) => {
     e.preventDefault();
     const userId = user.id;
@@ -85,11 +84,10 @@ function EditRecipePage(props) {
     setImage(btoa(binaryString));
   };
 
-
   return (
     <div className="AddRecipe">
-      <h1>Edit Recipe:</h1>
       <form onSubmit={editRecipe} onChange={(e) => onFormChange(e)}>
+        <h1>Edit Recipe:</h1>
         <label>Title: </label>
         <input
           type="text"
@@ -97,36 +95,42 @@ function EditRecipePage(props) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-
-        <label>Prep Time: </label>
-        <input
-          type="number"
-          name="prepTime"
-          value={prepTime}
-          onChange={(e) => setPrepTime(e.target.value)}
-        />
-
-        <label>Cook Time: </label>
-        <input
-          type="number"
-          name="cookTime"
-          value={cookTime}
-          onChange={(e) => setCookTime(e.target.value)}
-        />
-
-        <label>Servings: </label>
-        <input
-          type="number"
-          name="servings"
-          value={servings}
-          onChange={(e) => setServings(e.target.value)}
-        />
-
+        <div className="recipe-numbers">
+          <div>
+            <label>Prep Time: </label>
+            <input
+              type="number"
+              name="prepTime"
+              value={prepTime}
+              onChange={(e) => setPrepTime(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Cook Time: </label>
+            <input
+              type="number"
+              name="cookTime"
+              value={cookTime}
+              onChange={(e) => setCookTime(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Servings: </label>
+            <input
+              type="number"
+              name="servings"
+              value={servings}
+              onChange={(e) => setServings(e.target.value)}
+            />
+          </div>
+        </div>
         <label>Ingredients: </label>
         <textarea
           type="text"
           name="ingredients"
           value={ingredients}
+          cols="40"
+          rows="10"
           onChange={(e) => setIngredients(e.target.value)}
         />
 
@@ -135,14 +139,18 @@ function EditRecipePage(props) {
           type="text"
           name="directions"
           value={directions}
+          cols="40"
+          rows="10"
           onChange={(e) => setDirections(e.target.value)}
         />
 
         <label>Image</label>
         <input type="file" name="image" id="file" accept=".jpeg, .png, .jpg" />
 
-        <button type="submit">Save</button>
-        <Link to={`/recipes/${recipeId}`}><button>Cancel</button></Link>
+        <button className="fade-button" type="submit">Save</button>
+        <Link to={`/recipes/${recipeId}`}>
+          <button className="fade-button">Cancel</button>
+        </Link>
       </form>
     </div>
   );

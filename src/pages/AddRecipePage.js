@@ -65,66 +65,97 @@ function AddRecipePage() {
   //form
   return (
     <div className="AddRecipe">
-      <h1>New Recipe:</h1>
-      <form onSubmit={handleSubmit} onChange={(e) => onFormChange(e)}>
-        <label>Title: </label>
-        <input
-          required
-          type="text"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+      <div className="add-recipe-form">
+        {/* <h1>New Recipe:</h1> */}
+        <form onSubmit={handleSubmit} onChange={(e) => onFormChange(e)}>
+          <h1>New Recipe:</h1>
+          <div className="add-recipe-top">
+            <div>
+              <label>Title: </label>
+              <input
+                required
+                type="text"
+                name="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
 
-        <label>Prep Time: </label>
-        <input
-          type="number"
-          name="prepTime"
-          value={prepTime}
-          onChange={(e) => setPrepTime(e.target.value)}
-        />
+            <div className="add-image">
+              <label>Image</label>
+              <input
+                type="file"
+                name="image"
+                id="file"
+                accept=".jpeg, .png, .jpg"
+              />
+            </div>
+          </div>
 
-        <label>Cook Time: </label>
-        <input
-          type="number"
-          name="cookTime"
-          value={cookTime}
-          onChange={(e) => setCookTime(e.target.value)}
-        />
+          <div className="add-recipe-middle">
+            <div>
+              <label>Prep Time: </label>
+              <input
+                type="number"
+                name="prepTime"
+                value={prepTime}
+                onChange={(e) => setPrepTime(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Cook Time: </label>
+              <input
+                type="number"
+                name="cookTime"
+                value={cookTime}
+                onChange={(e) => setCookTime(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Servings: </label>
+              <input
+                type="number"
+                name="servings"
+                value={servings}
+                onChange={(e) => setServings(e.target.value)}
+              />
+            </div>
+          </div>
 
-        <label>Servings: </label>
-        <input
-          type="number"
-          name="servings"
-          value={servings}
-          onChange={(e) => setServings(e.target.value)}
-        />
+          <div className="add-recipe-bottom">
+            <div>
+              <label>Ingredients: </label>
+              <textarea
+                required
+                name="ingredients"
+                value={ingredients}
+                cols="40"
+                rows="10"
+                onChange={(e) => setIngredients(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Directions: </label>
+              <textarea
+                required
+                type="text"
+                name="directions"
+                value={directions}
+                cols="40"
+                rows="10"
+                onChange={(e) => setDirections(e.target.value)}
+              />
+            </div>
+          </div>
 
-        <label>Ingredients: </label>
-        <textarea
-          required
-          name="ingredients"
-          value={ingredients}
-          onChange={(e) => setIngredients(e.target.value)}
-        />
-
-        <label>Directions: </label>
-        <textarea
-          required
-          type="text"
-          name="directions"
-          value={directions}
-          onChange={(e) => setDirections(e.target.value)}
-        />
-
-        <label>Image</label>
-        <input type="file" name="image" id="file" accept=".jpeg, .png, .jpg" />
-
-        <button type="submit">Save</button>
-        <Link to={`/cookbooks/${user.id}`}>
-          <button>Cancel</button>
-        </Link>
-      </form>
+          <button className="fade-button" type="submit">
+            Save
+          </button>
+          <Link to={`/cookbooks/${user.id}`}>
+            <button className="fade-button">Cancel</button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }

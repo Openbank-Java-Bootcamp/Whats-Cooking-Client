@@ -7,6 +7,8 @@ import { AuthContext } from "../context/auth.context";
 import NoteCard from "../components/NoteCard";
 import NoteForm from "../components/NoteForm";
 import EditCookbookButton from "../components/EditCookbookButton";
+import Navbar from "../components/Navbar";
+import placeholder from "../assets/image-placeholder.png";
 
 const API_URL = "http://localhost:8081/api";
 
@@ -58,7 +60,6 @@ function RecipeDetailsPage() {
     return user.id == recipe.addedBy.id;
   };
 
-
   //add this recipe to user's cookbook
   const addRecipeToCookbook = () => {
     const requestBody = { recipe };
@@ -81,35 +82,70 @@ function RecipeDetailsPage() {
 
   return (
     <div className="RecipeDetailsPage">
+      <Navbar />
       {recipe && (
-        <>
-          <button className="fade-button go-back" onClick={goBack}>
-            Go Back
-          </button>
-          <div>
-            <h1>{recipe.title}</h1>
-            <Link to={`/cookbooks/${recipe.addedBy.id}`}>
-              <p>Added by: {recipe.addedBy.name}</p>
-            </Link>
+        <div className="recipe-box">
+          <div className="recipe-column1">
+            <button className="fade-button go-back" onClick={goBack}>
+              Go Back
+            </button>
           </div>
-          <div className="recipe-buttons">
-            <EditCookbookButton recipe={recipe} />
-            {isOwner() && (
-              <div>
-                <Link to={`/recipes/edit/${recipeId}`}>
-                  <button className="outline-button">Edit Recipe</button>
-                </Link>
-                <button className="outline-button" onClick={deleteRecipe}>
-                  Delete Recipe
-                </button>
+
+          <div className="recipe-column2">
+            <div className="recipe-page-top">
+              <div className="recipe-title">
+                <h1>{recipe.title}</h1>
               </div>
-            )}
+              <div className="buttons">
+                <EditCookbookButton recipe={recipe} />
+                <Link to={`/cookbooks/${recipe.addedBy.id}`}>
+                  <p>Added by: {recipe.addedBy.name}</p>
+                </Link>
+                <div>
+                  {isOwner() && (
+                    <div className="recipe-buttons">
+                      <Link to={`/recipes/edit/${recipeId}`}>
+                        <button className="fade-button">Edit Recipe</button>
+                      </Link>
+                      <button className="fade-button" onClick={deleteRecipe}>
+                        Delete Recipe
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="recipe-page-middle">
+              <div className="photo-and-note">
+                {recipe.image && (
+                  <img
+                    className="recipe-image"
+                    src={`data:image/png;base64,${recipe.image}`}
+                  />
+                )}
+                {!recipe.image && <img src={placeholder} />}
+              </div>
+              <div className="recipe-times">
+                <h3>Prep Time: {recipe.prepTime} min</h3>
+                <h3>Cook Time: {recipe.cookTime} min</h3>
+                <h3>Servings: {recipe.servings}</h3>
+              </div>
+            </div>
+
+            <div className="recipe-page-bottom">
+              <ul className="ingredients">
+                {/* <p>{recipe.ingredients}</p> */}
+                {recipe.ingredients.split(",").map((el) => (
+                  <li className="ingredient-item">{el}</li>
+                ))}
+              </ul>
+              <div className="directions">
+                <p>{recipe.directions}</p>
+              </div>
+            </div>
           </div>
-          <div className="photo-and-note">
-            <img
-              className="recipe-image"
-              src={`data:image/png;base64,${recipe.image}`}
-            />
+
+          <div className="recipe-column3">
             {!isEditMode && (
               <div>
                 {!note && (
@@ -126,6 +162,7 @@ function RecipeDetailsPage() {
                 )}
               </div>
             )}
+
             {isEditMode && (
               <NoteForm
                 note={note}
@@ -135,23 +172,7 @@ function RecipeDetailsPage() {
               />
             )}
           </div>
-          <div className="recipe-times">
-            <h3>Prep Time: {recipe.prepTime} min</h3>
-            <h3>Cook Time: {recipe.cookTime} min</h3>
-            <h3>Servings: {recipe.servings}</h3>
-          </div>
-          <div className="ingredients-directions">
-            <ul className="ingredients">
-              {/* <p>{recipe.ingredients}</p> */}
-              {recipe.ingredients.split(",").map((el) => (
-                <li className="ingredient-item">{el}</li>
-              ))}
-            </ul>
-            <div className="directions">
-              <p>{recipe.directions}</p>
-            </div>
-          </div>
-        </>
+        </div>
       )}
       {!recipe && <h1>No recipe</h1>}
     </div>

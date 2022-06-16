@@ -14,6 +14,10 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* Navbar */
 .Navbar {
   /* background-color: rgb(34, 31, 26); */
@@ -30,6 +34,27 @@ code {
   display: flex;
   justify-content: left;
   width: 100%;
+}
+
+.navbar-loggedin {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-nav * {
+  float: right;
+}
+
+.navbar-loggedout {
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
 
 .fade-button {
@@ -56,10 +81,10 @@ code {
 
 .background-image-1 {
   /* background-image: url("assets/pasta-cooking-xxl.jpg"); */
-  background-image: url("assets/steaming-pot.gif");
+  /* background-image: url("assets/steaming-pot.gif");
   background-size: cover;
   position: relative;
-  height: 750px;
+  height: 750px; */
 }
 
 .text {
@@ -124,14 +149,14 @@ code {
   letter-spacing: 1px;
 }
 
-.parallelax3 {
+/* .parallelax3 {
   background-image: url("assets/silverware.jpeg");
   min-height: 400px;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 .home-page-box3 {
   color:rgba(0, 0, 0, 0.8);
@@ -243,14 +268,6 @@ label {
 
 /* RecipeCard */
 .RecipeCard {
-  /* border: solid 1px antiquewhite;
-  margin: 20px;
-  /* padding: 10px; */
-  /* height: 300px;
-  width: 300px;
-  opacity: 75%;
-  background-color: blanchedalmond;  */
-
   background: #fff;
   width: 250px;
   height: 350px;
@@ -261,7 +278,7 @@ label {
 }
 
 .RecipeCard a {
-  padding: 0;
+  padding: 0 ;
   height: 100%;
 }
 
@@ -278,7 +295,7 @@ label {
   top:10%;
   left:4%;
   overflow: hidden;
-  margin: 0;
+  float: center;
 }
 
 .thumbnail image{
@@ -305,29 +322,94 @@ label {
 }
 
 /* RecipeDetailsPage  */
+
 .RecipeDetailsPage {
-  padding-top: 100px;
-  background-color: blanchedalmond;
+  background-image: url("./assets/recipepage.jpeg");
+  background-size: cover;
+  background-repeat: none;
+  background-position:top;
+  opacity: 80%;
+  margin-top: -240px;
+  height: 1400px;
+  padding-top: 240px;
   color:rgba(39, 45, 48, 0.876)
 }
 
-.RecipeDetailsPage h1 {
+.recipe-box {
+  padding-top: 15%;
+  width: 100%;
+  margin:0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  overflow: hidden;
+}
+
+.recipe-column2 {
+ display: flex;
+ flex-direction: column;
+ width: 55%;
+}
+
+.recipe-page-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recipe-box h1 {
+  font-size: 50px;
+  font-weight: 900;
+  text-align: center;
   color:rgba(39, 45, 48, 0.876);
-  
+  margin: 0;
 }
 
-.go-back {
-  float: left;
-}
 
-.RecipeDetailsPage p {
-  font-weight: 800;
-  font-size: 20px;
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .recipe-buttons {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+}
+
+.recipe-buttons * {
+  margin-bottom: 5px;;
+}
+
+.recipe-image {
+  max-height: 400px;
+  width: auto;
+}
+
+.recipe-times {
+  border: solid 1px black;
+}
+
+.recipe-page-bottom {
+  display: flex;
+  flex-direction: row;
+  padding-top: 30px;
+}
+
+.ingredients {
+  width: 40%;
+}
+
+li {
+  font-weight: 900;
+  font-size: 20px;
+  text-align: left;
+}
+.RecipeDetailsPage p {
+  font-weight: 900;
+  font-size: 20px;
+  text-align: left;
 }
 
 .outline-button {
@@ -340,7 +422,6 @@ label {
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
-
   border-radius: 4px;
 }
 
@@ -418,8 +499,125 @@ label {
 
 /* Cookbook */
 .Cookbook {
-  background-image: url("assets/slate-banner.jpeg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding-top: 100px;
+  height: 100%;
 }
+
+.cookbook-background {
+  background-image: url("assets/pasta-cooking-xxl.jpg");
+  min-height: 100px;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.transparent-box {
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+}
+
+.transparent-box div {
+  width: 100%;
+  margin: 0 auto;
+}
+.Cookbook .thumbnail {
+  left: 0%;
+}
+
+.Cookbook .recipe-card-box {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.Cookbook h1 {
+  color:rgb(67, 106, 99);
+  font-size: 60px;
+  font-weight: 900;
+}
+
+.delete-account-button {
+  margin-top: 4%;
+  margin-left: 85%;
+}
+
+.AddRecipe {
+  background-image: url("assets/silverware.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 10%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.AddRecipe form {
+  background-color: rgb(159, 142, 122);
+  padding: 5%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.AddRecipe form > * {
+  margin: 5px;
+}
+.AddRecipe form input {
+  margin: 10px;
+}
+
+.recipe-numbers {
+  display: flex;
+}
+
+.AddRecipe h1 {
+  font-size: 60px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.add-recipe-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: left;
+}
+
+.add-image {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-recipe-middle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.add-recipe-middle > * {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.add-recipe-bottom {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.add-recipe-bottom * {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 15px;
+}
+

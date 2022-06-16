@@ -13,33 +13,33 @@ function Navbar() {
       </Link>
 
       {isLoggedIn && (
-        <>
+        <div className="navbar-loggedin">
           <Link to="/recipes">
             <button className="fade-button">Recipes</button>
           </Link>
-          <Link to="/">
+          <div className="user-nav">
+            <span><h1>{user && user.name}</h1></span>
+            <Link to="/">
             <button className="fade-button" onClick={logOutUser}>
               Logout
             </button>
           </Link>
-          <div className="user-nav">
-            <span>{user && user.name}</span>
             <Link to={`/cookbooks/${user.id}`}>
               <button className="fade-button">My Cookbook</button>
             </Link>
           </div>
-        </>
+        </div>
       )}
 
       {!isLoggedIn && (
-        <>
+        <div className="navbar-loggedout">
           <Link to="/signup">
             <button className="fade-button">Sign Up</button>
           </Link>
           <Link to="/login">
             <button className="fade-button">Login</button>
           </Link>
-        </>
+        </div>
       )}
     </nav>
   );
