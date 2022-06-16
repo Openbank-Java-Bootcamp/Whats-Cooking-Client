@@ -86,33 +86,31 @@ function RecipeDetailsPage() {
       {recipe && (
         <div className="recipe-box">
           <div className="recipe-column1">
-            <button className="fade-button go-back" onClick={goBack}>
+            {/* <button className="fade-button go-back" onClick={goBack}>
               Go Back
-            </button>
+            </button> */}
           </div>
 
           <div className="recipe-column2">
             <div className="recipe-page-top">
+              <div className="buttons">
+                {isOwner() && (
+                  <div className="recipe-buttons">
+                    <Link to={`/recipes/edit/${recipeId}`}>
+                      <button className="fade-button">Edit Recipe</button>
+                    </Link>
+                    <button className="fade-button" onClick={deleteRecipe}>
+                      Delete Recipe
+                    </button>
+                  </div>
+                )}
+                <EditCookbookButton recipe={recipe} />
+              </div>
               <div className="recipe-title">
                 <h1>{recipe.title}</h1>
-              </div>
-              <div className="buttons">
-                <EditCookbookButton recipe={recipe} />
                 <Link to={`/cookbooks/${recipe.addedBy.id}`}>
-                  <p>Added by: {recipe.addedBy.name}</p>
+                  Added by: {recipe.addedBy.name}
                 </Link>
-                <div>
-                  {isOwner() && (
-                    <div className="recipe-buttons">
-                      <Link to={`/recipes/edit/${recipeId}`}>
-                        <button className="fade-button">Edit Recipe</button>
-                      </Link>
-                      <button className="fade-button" onClick={deleteRecipe}>
-                        Delete Recipe
-                      </button>
-                    </div>
-                  )}
-                </div>
               </div>
             </div>
             <div className="recipe-page-middle">
@@ -125,11 +123,13 @@ function RecipeDetailsPage() {
                 )}
                 {!recipe.image && <img src={placeholder} />}
               </div>
+              <hr />
               <div className="recipe-times">
                 <h3>Prep Time: {recipe.prepTime} min</h3>
                 <h3>Cook Time: {recipe.cookTime} min</h3>
                 <h3>Servings: {recipe.servings}</h3>
               </div>
+              <hr />
             </div>
 
             <div className="recipe-page-bottom">
@@ -139,6 +139,7 @@ function RecipeDetailsPage() {
                   <li className="ingredient-item">{el}</li>
                 ))}
               </ul>
+              <hr />
               <div className="directions">
                 <p>{recipe.directions}</p>
               </div>

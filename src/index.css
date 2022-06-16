@@ -51,7 +51,10 @@ a {
 .user-nav h1 {
   color: rgba(39, 45, 48);
   font-weight: 900;
+  font-size: 30px;
   margin-right: 10px;
+  background-color: rgba(255, 255, 255, 0.419);
+  border-radius: 2px;
 }
 
 .user-nav * {
@@ -86,14 +89,6 @@ a {
 
 /* HomePage */
 
-.background-image-1 {
-  /* background-image: url("assets/pasta-cooking-xxl.jpg"); */
-  /* background-image: url("assets/steaming-pot.gif");
-  background-size: cover;
-  position: relative;
-  height: 750px; */
-}
-
 .logo-text {
   background-color: white;
   opacity: 50%;
@@ -111,15 +106,6 @@ a {
   transform: translate(-50%, -50%); /* Position text in the middle */
   mix-blend-mode: screen; /* This makes the cutout text possible */
 }
-
-/* .parallelax1 {
-  background-image: url("assets/pasta-cooking-xxl.jpg");
-  min-height: 500px;
-  background-attachment: fixed;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size:cover;
-} */
 
 .homepage-background1 {
   /* background-color: blanchedalmond; */
@@ -156,15 +142,6 @@ a {
   margin: 40px;
   letter-spacing: 1px;
 }
-
-/* .parallelax3 {
-  background-image: url("assets/silverware.jpeg");
-  min-height: 400px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
 
 .home-page-box3 {
   color:rgba(0, 0, 0, 0.8);
@@ -246,8 +223,9 @@ label {
 .RecipeListPage{
   width:100%;
   background-color: rgba(53, 59, 56, 0.967);
+  min-height: 1200px;
 }
-.top-recipe-list-page{
+.recipe-list-header{
   /* padding: 100px;
   background-color: rgba(67, 106, 99, 0.655);
   background-image: url("assets/slate2.jpeg");
@@ -255,13 +233,17 @@ label {
   background-image: url("assets/slate-banner.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
+  position: fixed;
   margin:0;
-  padding-top: 9%;
-  padding-bottom: 6%;
   /* opacity: 97%; */
+  z-index: 2;
+  width: 100%;
+  padding-bottom: 2%;
 }
 
 .RecipeListPage h1 {
+  padding-top: -1%;
   font-size: 80px;
   color:antiquewhite;
 }
@@ -277,10 +259,11 @@ label {
 }
 
 .recipe-card-box {
+  padding-top: 35%;
   display: flex;
   flex-wrap: wrap;
   justify-content:flex-start;
-  margin:50px;
+  margin:0 50px;
   float: center;
 }
 
@@ -342,15 +325,16 @@ label {
 /* RecipeDetailsPage  */
 
 .RecipeDetailsPage {
-  background-image: url("./assets/recipepage.jpeg");
+  background-image: url("./assets/slate2.jpeg");
   background-size: cover;
   background-repeat: none;
   background-position:top;
-  opacity: 80%;
+  opacity: 90%;
   margin-top: -240px;
   height: 1400px;
   padding-top: 240px;
-  color:rgba(39, 45, 48, 0.876)
+  color:rgb(48, 55, 53);
+
 }
 
 .recipe-box {
@@ -364,40 +348,41 @@ label {
 }
 
 .recipe-column2 {
+  padding: 2%;;
+  background-color: rgb(225, 210, 192);
  display: flex;
  flex-direction: column;
- width: 55%;
+ width: 65%;
+ border-radius: 14px;
 }
 
-.recipe-page-top {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.recipe-page-top a {
+  margin: 0 auto;
+  text-decoration: none;
+  color:rgb(48, 55, 53);
+  font-weight: 900;
+  font-size: 20px;
 }
 
 .recipe-box h1 {
   font-size: 50px;
   font-weight: 900;
   text-align: center;
-  color:rgba(39, 45, 48, 0.876);
+  color:rgb(48, 55, 53);
   margin: 0;
-}
-
-
-.buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
 }
 
 .recipe-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
-.recipe-buttons * {
-  margin-bottom: 5px;;
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .recipe-image {
@@ -406,17 +391,26 @@ label {
 }
 
 .recipe-times {
-  border: solid 1px black;
+  margin-bottom: 0;
 }
 
 .recipe-page-bottom {
   display: flex;
   flex-direction: row;
-  padding-top: 30px;
+  justify-content: space-between;
+}
+
+hr {
+  border: solid 1px rgb(67, 106, 99, .6)
 }
 
 .ingredients {
-  width: 40%;
+  width: 35%;
+  padding: 2%;
+}
+
+.directions {
+  padding: 2%;
 }
 
 li {
@@ -471,10 +465,22 @@ li {
   box-shadow: 10px 10px 5px rgba(120, 123, 124, 0.529);
 }
 
+.NoteCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .note-buttons {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+}
+
+.EditNote form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .small-fade-button {
@@ -522,17 +528,19 @@ li {
 
 .cookbook-background {
   background-image: url("assets/pasta-cooking-xxl.jpg");
-  min-height: 100px;
+  min-height: 1100px;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  padding-top: 10%;
 }
 
 .transparent-box {
   height: 100%;
   width: 90%;
+  padding: 1%;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 16px;
@@ -573,7 +581,7 @@ li {
 }
 
 .add-recipe-background {
-  background-color: rgb(159, 142, 122);
+  background-color: rgb(162, 143, 122);
   opacity: 60%;
   padding: 5%;
   width: 50%;

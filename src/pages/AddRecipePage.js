@@ -65,34 +65,19 @@ function AddRecipePage() {
   //form
   return (
     <div className="AddRecipe">
-      <div className="add-recipe-form">
-        {/* <h1>New Recipe:</h1> */}
+      <div className="add-recipe-background">
         <form onSubmit={handleSubmit} onChange={(e) => onFormChange(e)}>
           <h1>New Recipe:</h1>
-          <div className="add-recipe-top">
-            <div>
-              <label>Title: </label>
-              <input
-                required
-                type="text"
-                name="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
+          <label>Title: </label>
+          <input
+            required
+            type="text"
+            name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
 
-            <div className="add-image">
-              <label>Image</label>
-              <input
-                type="file"
-                name="image"
-                id="file"
-                accept=".jpeg, .png, .jpg"
-              />
-            </div>
-          </div>
-
-          <div className="add-recipe-middle">
+          <div className="recipe-numbers">
             <div>
               <label>Prep Time: </label>
               <input
@@ -122,32 +107,35 @@ function AddRecipePage() {
             </div>
           </div>
 
-          <div className="add-recipe-bottom">
-            <div>
-              <label>Ingredients: </label>
-              <textarea
-                required
-                name="ingredients"
-                value={ingredients}
-                cols="40"
-                rows="10"
-                placeholder="Enter ingredients separated by a comma: first ingredient, second ingredient, etc"
-                onChange={(e) => setIngredients(e.target.value)}
-              />
-            </div>
-            <div>
-              <label>Directions: </label>
-              <textarea
-                required
-                type="text"
-                name="directions"
-                value={directions}
-                cols="40"
-                rows="10"
-                onChange={(e) => setDirections(e.target.value)}
-              />
-            </div>
-          </div>
+          <label>Ingredients: </label>
+          <textarea
+            required
+            name="ingredients"
+            value={ingredients}
+            cols="40"
+            rows="10"
+            placeholder="Enter ingredients separated by a comma: first ingredient, second ingredient, etc"
+            onChange={(e) => setIngredients(e.target.value)}
+          />
+
+          <label>Directions: </label>
+          <textarea
+            required
+            type="text"
+            name="directions"
+            value={directions}
+            cols="40"
+            rows="10"
+            onChange={(e) => setDirections(e.target.value)}
+          />
+
+          <label>Image</label>
+          <input
+            type="file"
+            name="image"
+            id="file"
+            accept=".jpeg, .png, .jpg"
+          />
 
           <button className="fade-button" type="submit">
             Save

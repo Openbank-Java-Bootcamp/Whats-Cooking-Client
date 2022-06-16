@@ -4,39 +4,36 @@ import axios from "axios";
 const API_URL = "http://localhost:8081/api";
 
 function NoteForm({ note, toggleEditMode, userId, recipeId }) {
-    const [content, setContent] = useState("");
-  
-    const createNote = (e) => {
-      e.preventDefault();
-  
-      const requestBody = {userId, recipeId, content};
-      //console.log(requestBody);
-  
-      const storedToken = localStorage.getItem("authToken");
-  
-      axios
-        .post(`${API_URL}/notes`, requestBody, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          //setContent("");
-          toggleEditMode();
-        })
-        .catch((error) => console.log(error));
-    };
+  const [content, setContent] = useState("");
 
-  const editNote = (e) => {
+  const createNote = (e) => {
     e.preventDefault();
 
-    //const requestBody = {content};
-    //console.log(requestBody);
+    const requestBody = { userId, recipeId, content };
 
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .patch(`${API_URL}/notes/${note.id}`, {content}, {
+      .post(`${API_URL}/notes`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
+      .then((response) => {
+        toggleEditMode();
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const editNote = (e) => {
+    e.preventDefault();
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .patch(
+        `${API_URL}/notes/${note.id}`,
+        { content },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
       .then((response) => {
         toggleEditMode();
       })
@@ -74,23 +71,31 @@ function NoteForm({ note, toggleEditMode, userId, recipeId }) {
   } else {
     return (
       <div className="EditNote">
-        <h2>Edit Note:</h2>
-        <form onSubmit={createNote}>
-          <textarea
-            type="text"
-            name="content"
-            value={content}
-            maxLength="150"
-            placeholder="max 150 characters"
-            cols="25"
-            rows="6"
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <div className="note-buttons">
-            <button className="small-fade-button" type="submit">Save</button>
-            <button className="small-fade-button" onClick={toggleEditMode}>Cancel</button>
-          </div>
-        </form>
+        <div>
+          <h2>Edit Note:</h2>
+          <form onSubmit={createNote}>
+            <div>
+              <textarea
+                type="text"
+                name="content"
+                value={content}
+                maxLength="150"
+                placeholder="max 150 characters"
+                cols="25"
+                rows="6"
+                onChange={(e) => setContent(e.target.value)}
+              />
+            </div>
+            <div className="note-buttons">
+              <button className="small-fade-button" type="submit">
+                Save
+              </button>
+              <button className="small-fade-button" onClick={toggleEditMode}>
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

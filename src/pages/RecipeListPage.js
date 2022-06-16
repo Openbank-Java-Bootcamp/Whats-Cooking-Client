@@ -29,19 +29,21 @@ function RecipeListPage() {
 
   return (
     <div className="RecipeListPage">
-      <div className="top-recipe-list-page">
-        <h1>Recipes</h1>
-        <div className="search-box">
-          <Search
-            getAllRecipes={getAllRecipes}
-            setUpdatedRecipes={setUpdatedRecipes}
-          />
+      <div className="recipe-list-background">
+        <div className="recipe-list-header">
+          <h1>Recipes</h1>
+          <div className="search-box">
+            <Search
+              getAllRecipes={getAllRecipes}
+              setUpdatedRecipes={setUpdatedRecipes}
+            />
+          </div>
         </div>
-      </div>
-      <div className="recipe-card-box">
-        {updatedRecipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
+        <div className="recipe-card-box">
+          {updatedRecipes.map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))}
+        </div>
       </div>
     </div>
   );

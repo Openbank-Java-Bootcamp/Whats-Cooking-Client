@@ -36,12 +36,11 @@ function CookbookDetailsPage() {
 
   return (
     <div className="Cookbook">
-      <div className="cookbook-background"></div>
       <div className="cookbook-background">
         {cookbook && (
           <div className="transparent-box">
             <div>
-              <button className="small-fade-button delete-account-button">Delete my Account</button>
+              {isOwner() && <button className="small-fade-button delete-account-button">Delete my Account</button>}
               <h1>{isOwner() ? "My" : `${cookbook.owner.name}'s`} Cookbook</h1>
               <Link to="/recipes/new">
                 <button className="fade-button">CREATE NEW RECIPE</button>
