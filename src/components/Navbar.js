@@ -18,14 +18,16 @@ function Navbar() {
             <button className="fade-button">Recipes</button>
           </Link>
           <div className="user-nav">
-            <span><h1>{user && user.name}</h1></span>
-            <Link to="/">
-            <button className="fade-button" onClick={logOutUser}>
-              Logout
-            </button>
-          </Link>
+            <span>
+              <h1>{user && user.name}</h1>
+            </span>
             <Link to={`/cookbooks/${user.id}`}>
               <button className="fade-button">My Cookbook</button>
+            </Link>
+            <Link to="/">
+              <button className="fade-button" onClick={logOutUser}>
+                Logout
+              </button>
             </Link>
           </div>
         </div>

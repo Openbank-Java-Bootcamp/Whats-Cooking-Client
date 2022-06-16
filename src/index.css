@@ -34,6 +34,7 @@ a {
   display: flex;
   justify-content: left;
   width: 100%;
+  z-index: 3;
 }
 
 .navbar-loggedin {
@@ -44,7 +45,13 @@ a {
 
 .user-nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.user-nav h1 {
+  color: rgba(39, 45, 48);
+  font-weight: 900;
+  margin-right: 10px;
 }
 
 .user-nav * {
@@ -87,7 +94,7 @@ a {
   height: 750px; */
 }
 
-.text {
+.logo-text {
   background-color: white;
   opacity: 50%;
   color: black;
@@ -114,8 +121,8 @@ a {
   background-size:cover;
 } */
 
-.parallelax1 {
-  background-color: blanchedalmond;
+.homepage-background1 {
+  /* background-color: blanchedalmond; */
   background-image: url("assets/steaming-pot.gif");
   min-height: 500px;
   background-attachment: fixed;
@@ -124,7 +131,7 @@ a {
   background-size: cover;
 }
 
-.home-page-box {
+.homepage-scroll1{
   color:rgba(0, 0, 0, 0.8);
   background-color:antiquewhite;
   text-align: center;
@@ -133,13 +140,14 @@ a {
   font-weight: 700;
 }
 
-.parallelax2 {
+.homepage-background2 {
   background-image: url("assets/hands-baking.jpeg");
   min-height: 700px;
   background-attachment: fixed;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+  opacity: 87%;
 }
 
 .HomePage p {
@@ -182,22 +190,32 @@ a {
 
 /* SignupPage and LoginPage */
 .SignupPage, .LoginPage {
+  height: 1000px;
   background-image: url("assets/pasta-cooking-xxl.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: top;
   background-repeat: no-repeat;
-  height: 100px;
-  padding: 480px 500px;
+  /* padding: 300 500px; */
+  display: flex;
   justify-content: center;
 }
 
+.signup-box {
+  opacity: 50%;
+}
+
 .signup-form {
-  opacity: 70%;
-  color:antiquewhite;
+  background-color: rgba(255, 255, 255, 0.643);
+  border: solid 2px antiquewhite;
+  margin-top: 25%;
+  padding: 50px;
+  opacity: 100%;
+  color:rgb(48, 55, 53);
   width: 20%;
   justify-content: center;
   position: fixed;
+  text-align: left;
   /* border: solid 1px antiquewhite;
   border-radius: 20%;
   padding: 40px ; */
@@ -545,7 +563,7 @@ li {
 }
 
 .AddRecipe {
-  background-image: url("assets/silverware.jpeg");
+  background-image: url("assets/slate2.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   padding: 10%;
@@ -554,10 +572,18 @@ li {
   flex-direction: column;
 }
 
-.AddRecipe form {
+.add-recipe-background {
   background-color: rgb(159, 142, 122);
+  opacity: 60%;
   padding: 5%;
   width: 50%;
+  margin:0 auto;
+}
+
+.AddRecipe form {
+  /* background-color: rgb(159, 142, 122);
+  padding: 5%;
+  width: 50%; */
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -569,10 +595,20 @@ li {
 }
 .AddRecipe form input {
   margin: 10px;
+  box-sizing: border-box;
 }
 
 .recipe-numbers {
   display: flex;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+}
+
+.recipe-numbers > * {
+display: flex;
+flex-direction: column;
 }
 
 .AddRecipe h1 {
@@ -596,6 +632,7 @@ li {
 .add-recipe-middle {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin: 20px;
 }

@@ -32,7 +32,7 @@ function SignupPage(props) {
       .catch((error) => {
         const errorDescription = error.response.data.errors[0].defaultMessage;
         setErrorMessage(errorDescription);
-        console.log(error.response.data.error);
+        console.log(errorDescription);
       });
   };
 
@@ -77,7 +77,10 @@ function SignupPage(props) {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
 
           <p>Already have account?</p>
-          <Link class="navbar-login-link" to={"/login"}> Login</Link>
+          <Link class="navbar-login-link" to={"/login"}>
+            {" "}
+            Login
+          </Link>
         </div>
       </form>
     </div>

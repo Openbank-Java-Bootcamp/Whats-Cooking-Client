@@ -29,7 +29,9 @@ function LoginPage(props) {
         navigate("/recipes");
       })
       .catch((error) => {
-        const errorDescription = error.response.data.errors[0].defaultMessage;
+        console.log(error.response.headers);
+        const errorDescription = error.response.data.errors[0
+        ].defaultMessage;
         setErrorMessage(errorDescription);
         console.log(errorMessage);
       });

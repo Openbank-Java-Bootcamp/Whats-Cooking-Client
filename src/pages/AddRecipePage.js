@@ -131,6 +131,7 @@ function AddRecipePage() {
                 value={ingredients}
                 cols="40"
                 rows="10"
+                placeholder="Enter ingredients separated by a comma: first ingredient, second ingredient, etc"
                 onChange={(e) => setIngredients(e.target.value)}
               />
             </div>

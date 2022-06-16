@@ -86,6 +86,7 @@ function EditRecipePage(props) {
 
   return (
     <div className="AddRecipe">
+      <div className="add-recipe-background">
       <form onSubmit={editRecipe} onChange={(e) => onFormChange(e)}>
         <h1>Edit Recipe:</h1>
         <label>Title: </label>
@@ -152,6 +153,7 @@ function EditRecipePage(props) {
           <button className="fade-button">Cancel</button>
         </Link>
       </form>
+      </div>
     </div>
   );
 }
