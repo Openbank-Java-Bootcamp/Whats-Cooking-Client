@@ -1,3 +1,55 @@
+# What's Cooking? Client
+
+In the past, recipes were passed down through families on hand-written cards or gathered in cookbooks with notes jotted in the margins.
+Now you can share all of your favorite recipes with loved ones near and far. Don’t forget to include the secret ingredient!
+
+What's Cooking? is a recipe management app that allow you to share your recipes with others. 
+
+A user can create an account and add their own recipes to share. From the Recipes Page a user can view all of the recipes that have been added to the app and can save any recipe to their own cookbook. 
+
+A user can also make a personal note on any recipe, ex. "Add less salt" or "Bake longer next time". This note is only viewable to the viewer.
+
+Other user's cookbooks can also be viewed by clicking on the "Added by:" on the recipe's details page. 
+
+
+## Setup
+
+Start the API server first (see repo for What's Cooking? Server)
+
+Need to run command npm install first
+```bash
+npm install 
+```
+
+Use command npm start to start the app.
+```bash
+npm start
+```
+(Also see more info about React Apps at the bottom of the page)
+
+## Technologies Used
+SPA frontend built with React.
+
+## Components and Pages Structure
+
+
+
+## Future Work
+There are many things I would like to add to this project, especially more interactive features for the user such as:
+
+Ratings system for user's to rate the recipes.
+
+Ability for users to be able to follow eachother and receive recipe suggestions or notifications based on the recipes their connected users are adding. 
+
+## Resources
+W3Schools website https://www.w3schools.com/
+
+Baeldung website https://www.baeldung.com/
+
+and of course my Ironhack instructors Raymond and Shaun
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
