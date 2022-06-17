@@ -12,6 +12,8 @@ A user can also make a personal note on any recipe, ex. "Add less salt" or "Bake
 Other user's cookbooks can also be viewed by clicking on the "Added by:" on the recipe's details page. 
 
 View the trello board: https://trello.com/b/nzXCoDvl/whats-cooking-app 
+
+Presentation slides: https://docs.google.com/presentation/d/1Chd84AIYlSS-H38_d6vyUUoIWcVoKR0PmY14GGJTLUY/edit#slide=id.g133420955c1_0_0
 ## Setup
 
 Start the API server first (see repo for What's Cooking? Server)
