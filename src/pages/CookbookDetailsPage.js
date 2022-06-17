@@ -8,7 +8,7 @@ import RecipeCard from "../components/RecipeCard";
 const API_URL = "http://localhost:8081/api";
 
 function CookbookDetailsPage() {
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [cookbook, setCookbook] = useState(null);
   const { cookbookId } = useParams();
 
@@ -45,7 +45,7 @@ function CookbookDetailsPage() {
               <Link to="/recipes/new">
                 <button className="fade-button">CREATE NEW RECIPE</button>
               </Link>
-              <div className="recipe-card-box">
+              <div className="cookbook-recipe-card-box">
                 {cookbook.recipeList.map((recipe) => (
                   <RecipeCard key={recipe.id} recipe={recipe} />
                 ))}

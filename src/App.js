@@ -12,6 +12,7 @@ import RecipeDetailsPage from './pages/RecipeDetailsPage';
 import CookbookDetailsPage from './pages/CookbookDetailsPage';
 import AddRecipePage from './pages/AddRecipePage';
 import EditRecipePage from './pages/EditRecipePage';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/cookbooks/:cookbookId" element={<IsPrivate><CookbookDetailsPage /></IsPrivate>} />
         <Route path="/recipes/new" element={<IsPrivate><AddRecipePage /></IsPrivate>} />
         <Route path="/recipes/edit/:recipeId" element={<IsPrivate><EditRecipePage /></IsPrivate>} />
+        <Route path="*" element={<IsAnon><ErrorPage /></IsAnon>} />
       </Routes>
     </div>
   );

@@ -40,7 +40,7 @@ function EditRecipePage(props) {
       .catch((error) => console.log(error));
   }, [recipeId]);
 
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const editRecipe = (e) => {
     e.preventDefault();
@@ -67,18 +67,17 @@ function EditRecipePage(props) {
       .catch((error) => console.log(error));
   };
 
+  //for file upload
   const onFormChange = (e) => {
-    console.log("file to upload:", e.target.files[0]);
     let file = e.target.files[0];
 
     if (file) {
       const reader = new FileReader();
       reader.onload = _handleReaderLoaded.bind(this);
-
       reader.readAsBinaryString(file);
     }
   };
-
+//also for file upload
   const _handleReaderLoaded = (readerEvt) => {
     let binaryString = readerEvt.target.result;
     setImage(btoa(binaryString));
@@ -94,6 +93,7 @@ function EditRecipePage(props) {
             type="text"
             name="title"
             value={title}
+            maxLength= "50"
             onChange={(e) => setTitle(e.target.value)}
           />
           <div className="recipe-numbers">

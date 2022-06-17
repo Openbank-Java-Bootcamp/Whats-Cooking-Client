@@ -15,7 +15,7 @@ function AddRecipePage() {
   const [directions, setDirections] = useState("");
   const [image, setImage] = useState("");
 
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -31,10 +31,8 @@ function AddRecipePage() {
       userId,
       image,
     };
-    console.log(requestBody);
 
     const storedToken = localStorage.getItem("authToken");
-
     axios
       .post(`${API_URL}/recipes`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -45,18 +43,17 @@ function AddRecipePage() {
       .catch((error) => console.log(error));
   };
 
+  //this is for the image upload
   const onFormChange = (e) => {
-    console.log("file to upload:", e.target.files[0]);
     let file = e.target.files[0];
 
     if (file) {
       const reader = new FileReader();
       reader.onload = _handleReaderLoaded.bind(this);
-
       reader.readAsBinaryString(file);
     }
   };
-
+//also for the image upload
   const _handleReaderLoaded = (readerEvt) => {
     let binaryString = readerEvt.target.result;
     setImage(btoa(binaryString));
@@ -74,6 +71,7 @@ function AddRecipePage() {
             type="text"
             name="title"
             value={title}
+            maxLength= "50"
             onChange={(e) => setTitle(e.target.value)}
           />
 

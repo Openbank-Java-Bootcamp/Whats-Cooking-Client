@@ -1,9 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
 
 function HomePage() {
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
     <div className="HomePage">
@@ -32,14 +28,6 @@ function HomePage() {
       <div className="home-page-box3">
         <h1>Bon Apetit!</h1>
       </div>
-
-      <div className="parallelax3"></div>
-      {!isLoggedIn && (
-        <Link to="/signup">
-          <div className="sign-up">Sign Up</div>
-        </Link>
-      )}
-      <div className="parallelax3"></div>
     </div>
   );
 }

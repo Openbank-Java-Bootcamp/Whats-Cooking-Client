@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import catChefPath from "../assets/catchef.jpg";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import NoteCard from "../components/NoteCard";
@@ -9,18 +8,18 @@ import NoteForm from "../components/NoteForm";
 import EditCookbookButton from "../components/EditCookbookButton";
 import Navbar from "../components/Navbar";
 import placeholder from "../assets/image-placeholder.png";
+import ErrorPage from "./ErrorPage";
 
 const API_URL = "http://localhost:8081/api";
 
 function RecipeDetailsPage() {
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { recipeId } = useParams();
   const navigate = useNavigate();
 
   const [recipe, setRecipe] = useState(null);
   const [note, setNote] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [ingredientArr, setIngredientArr] = useState([]);
 
   const getRecipe = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -56,29 +55,14 @@ function RecipeDetailsPage() {
     isEditMode ? setIsEditMode(false) : setIsEditMode(true);
   };
 
+  //checks if user is the owner of the cookbook
   const isOwner = () => {
     return user.id == recipe.addedBy.id;
-  };
-
-  //add this recipe to user's cookbook
-  const addRecipeToCookbook = () => {
-    const requestBody = { recipe };
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .patch(`${API_URL}/cookbooks/${user.id}`, requestBody, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {})
-      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
     getRecipe();
   }, [isEditMode, recipeId]);
-
-  const goBack = () => {
-    navigate(-1);
-  };
 
   return (
     <div className="RecipeDetailsPage">
@@ -86,9 +70,6 @@ function RecipeDetailsPage() {
       {recipe && (
         <div className="recipe-box">
           <div className="recipe-column1">
-            {/* <button className="fade-button go-back" onClick={goBack}>
-              Go Back
-            </button> */}
           </div>
 
           <div className="recipe-column2">
@@ -134,7 +115,6 @@ function RecipeDetailsPage() {
 
             <div className="recipe-page-bottom">
               <ul className="ingredients">
-                {/* <p>{recipe.ingredients}</p> */}
                 {recipe.ingredients.split(",").map((el) => (
                   <li className="ingredient-item">{el}</li>
                 ))}
@@ -175,7 +155,7 @@ function RecipeDetailsPage() {
           </div>
         </div>
       )}
-      {!recipe && <h1>No recipe</h1>}
+      {!recipe && <ErrorPage />}
     </div>
   );
 }

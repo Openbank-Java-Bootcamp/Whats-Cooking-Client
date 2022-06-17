@@ -10,8 +10,7 @@ function RecipeCard(props) {
         {recipe.image && <img src={`data:image/png;base64,${recipe.image}`} />}
         {!recipe.image && <img src={placeholder} />}
       </div>
-      <div className="title">
-        <></>
+      <div className="recipe-card-title">
         <h3>{recipe.title}</h3>
       </div>
     </NavLink>

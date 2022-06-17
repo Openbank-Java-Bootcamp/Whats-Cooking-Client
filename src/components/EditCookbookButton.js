@@ -5,11 +5,12 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8081/api";
 
+//this appears on the recipe details page and allows the user to add/remove that recipe to their cookbook
 function EditCookbookButton({ recipe }) {
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [cookbook, setCookbook] = useState(null);
   const [isInCookbook, setIsInCookbook] = useState(false);
-  const [recipeList, setRecipeList] = useState([]);
+  //const [recipeList, setRecipeList] = useState([]);
 
   const toggleIsInCookbook = () => {
     isInCookbook ? setIsInCookbook(false) : setIsInCookbook(true);
@@ -32,15 +33,16 @@ function EditCookbookButton({ recipe }) {
       .catch((error) => console.log(error));
   };
 
-  const checkIfRecipeInCookbook = () => {
-    console.log("cookbook", cookbook);
-    {
-      cookbook.recipeList.includes(recipe)
-        ? setIsInCookbook(true)
-        : setIsInCookbook(false);
-    }
-  };
+  // const checkIfRecipeInCookbook = () => {
+  //   console.log("cookbook", cookbook);
+  //   {
+  //     cookbook.recipeList.includes(recipe)
+  //       ? setIsInCookbook(true)
+  //       : setIsInCookbook(false);
+  //   }
+  // };
 
+  //this sends the cookbook id and recipe id and the backend will create or remove the relationship
   const editCookbook = () => {
     const storedToken = localStorage.getItem("authToken");
     const recipeId = recipe.id;
